@@ -782,7 +782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed9881889e87f4b5aab748878bc4abaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1239641270}
+  speed: 5
 --- !u!1 &657092426
 GameObject:
   m_ObjectHideFlags: 0
@@ -1859,6 +1859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea8c9901286b64f97952c02718ee757c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distance: 0.5
 --- !u!43 &2102104952
 Mesh:
   m_ObjectHideFlags: 0

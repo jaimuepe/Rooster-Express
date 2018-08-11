@@ -14,6 +14,15 @@ public class PlayerController : MonoBehaviour
     private GrabItems grabber;
 
     public float speed;
+    public float speedMultiplier;
+    public float dragDivisor;
+
+    public float maxForce;
+    public float maxTimerThrow;
+
+    float deltaTimeForce;
+
+    private float initialDrag;
 
     public float smoothDamp;
     Vector3 dampVelocity = Vector3.zero;
@@ -31,10 +40,12 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = false;
 
         mainCamera = Camera.main;
+        deltaTimeForce = 0f;
 
         _transform = transform;
         cameraTransform = Camera.main.transform;
         rb = GetComponent<Rigidbody>();
+        initialDrag = rb.drag;
         grabber = GetComponentInChildren<GrabItems>();
     }
 
@@ -57,9 +68,17 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                if (Input.GetButtonDown("Fire1"))
+                if(Input.GetButton("Fire1")) {
+                    deltaTimeForce += Time.deltaTime;
+                }
+                if (Input.GetButtonUp("Fire1"))
                 {
-                    grabber.DropBox();
+                    float forceOfDrop = 0f;
+                    forceOfDrop = maxForce * Mathf.Clamp01(deltaTimeForce / maxTimerThrow);
+                    Debug.Log("Time: " + deltaTimeForce + ", force: " + forceOfDrop);
+                    grabber.DropBox(forceOfDrop);
+                    forceOfDrop = 0.0f;
+                    deltaTimeForce = 0f;
                 }
                 else if (Input.GetButtonDown("Fire2"))
                 {
@@ -69,7 +88,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonUp("Fire1"))
             {
                 grabber.TryPickUpBox();
             }
@@ -78,21 +97,32 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerMovement()
     {
+        float localSpeed;
+        if (Input.GetButton("Fire3"))
+        {
+            Debug.Log("La velocidad ha aumentado");
+            localSpeed = speed * speedMultiplier;
+            if(rb.velocity.magnitude > 0.1f && rb.drag > 0.5f) {
+                rb.drag -= 0.1f;
+            }
+        } else {
+            localSpeed = speed;
+            if(rb.drag < initialDrag) {
+                rb.drag += 0.3f;
+            }
+        }
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
-
-        var x = moveHorizontal * Time.deltaTime * speed;
-        var z = moveVertical * Time.deltaTime * speed;
 
         Vector3 cameraFwd = cameraTransform.TransformDirection(Vector3.forward);
         Vector3 cameraRight = Vector3.Cross(Vector3.up, cameraFwd);
 
         Vector3 fwd = Vector3.Cross(cameraRight, Vector3.up);
-        Vector3 direction = (x * cameraRight + z * fwd).normalized;
+        Vector3 direction = (moveHorizontal * cameraRight + moveVertical * fwd).normalized;
 
-        Vector3 moveVector = direction * Time.deltaTime * speed;
+        Vector3 velocityVector = direction * Time.deltaTime * localSpeed;
 
-        rb.MovePosition(transform.position + moveVector);
+        rb.velocity += velocityVector;
 
         if (moveHorizontal != 0.0f || moveVertical != 0.0f)
         {
