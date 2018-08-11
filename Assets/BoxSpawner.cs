@@ -14,10 +14,21 @@ public class BoxSpawner : MonoBehaviour
     public Rect spawnArea;
 
     public int ammountOfBoxes;
+    public int ammountOfDecals;
 
     private void Start()
     {
-        SpawnBoxes(ammountOfBoxes);    
+        SpawnBoxes(ammountOfBoxes);
+    }
+
+#if UNITY_EDITOR
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            SpawnBoxes(ammountOfBoxes);
+        }
+#endif    
     }
 
     public void SpawnBoxes(int ammountOfBoxes)
@@ -80,7 +91,7 @@ public class BoxSpawner : MonoBehaviour
 
             boxTransform.localScale = scale * Vector3.one;
 
-            GenerateTags(box, 3);
+            GenerateTags(box, ammountOfDecals);
 
             yield return null;
         }

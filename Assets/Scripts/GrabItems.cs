@@ -25,7 +25,7 @@ public class GrabItems : MonoBehaviour
         if (CarryingItem)
         {
             boxTransform.position = transform.position + distance * transform.TransformDirection(Vector3.forward);
-            boxTransform.forward = transform.forward;
+            boxTransform.rotation = transform.rotation;
 
         }
     }
@@ -59,6 +59,6 @@ public class GrabItems : MonoBehaviour
         boxTransform = box.transform;
         boxTransform.GetComponent<Rigidbody>().isKinematic = true;
         BoxCollider boxC = boxTransform.GetComponent<BoxCollider>();
-        distance = boxC.size.z * 0.5f;
+        distance = boxC.size.z * boxTransform.localScale.z * 0.5f;
     }
 }
