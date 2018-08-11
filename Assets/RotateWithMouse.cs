@@ -4,18 +4,11 @@ using UnityEngine;
 
 public class RotateWithMouse : MonoBehaviour
 {
-
     Transform _transform;
-    Vector2 lastMousePosition;
-
-    Vector3 rotation;
 
     void Start()
     {
         _transform = transform;
-        rotation = transform.eulerAngles;
-        lastMousePosition = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -25,26 +18,18 @@ public class RotateWithMouse : MonoBehaviour
 
     private void Update()
     {
-        Vector2 currentMousePosition = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-
         Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        Debug.Log(mouseDelta);
 
         Vector3 deltaRotation = Vector3.zero;
         if (mouseDelta.x != 0.0f)
         {
-            deltaRotation.y = mouseDelta.x;
+            deltaRotation.x = mouseDelta.x;
         }
         if (mouseDelta.y != 0.0f)
         {
-            deltaRotation.x = -mouseDelta.y;
+            deltaRotation.y = mouseDelta.y;
         }
 
-        rotation += deltaRotation * speed * Time.deltaTime;
-
-        Quaternion desiredRotQ = Quaternion.Euler(rotation);
-        _transform.rotation = Quaternion.Lerp(_transform.rotation, desiredRotQ, Time.deltaTime * damping);
-
-        lastMousePosition = currentMousePosition;
+        _transform.Rotate(-deltaRotation.y, deltaRotation.x, 0.0f, Space.Self);
     }
 }

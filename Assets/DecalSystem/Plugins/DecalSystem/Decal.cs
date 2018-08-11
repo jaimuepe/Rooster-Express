@@ -10,7 +10,6 @@ namespace _Decal {
     public class Decal : MonoBehaviour {
 
         public Material material;
-        public Sprite sprite;
 
         public float maxAngle = 90.0f;
         public float pushDistance = 0.009f;

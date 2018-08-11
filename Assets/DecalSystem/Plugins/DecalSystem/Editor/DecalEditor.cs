@@ -25,11 +25,11 @@ namespace _Decal {
 
             if (decal.texture != null) {
                 EditorGUILayout.Separator();
-                decal.sprite = GUIUtils.DrawSpriteList( decal.sprite, LoadSprites( decal.texture ) );
-                decal.sprite = GUIUtils.AssetField( "Sprite", decal.sprite );
+                // decal.sprite = GUIUtils.DrawSpriteList( decal.sprite, LoadSprites( decal.texture ) );
+                // decal.sprite = GUIUtils.AssetField( "Sprite", decal.sprite );
             }
 
-            if (decal.sprite != null && decal.sprite.texture != decal.texture) decal.sprite = null;
+           //  if (decal.sprite != null && decal.sprite.texture != decal.texture) decal.sprite = null;
 
 
 
@@ -37,7 +37,7 @@ namespace _Decal {
             decal.maxAngle = EditorGUILayout.FloatField( "Max Angle", decal.maxAngle );
             decal.maxAngle = Mathf.Clamp( decal.maxAngle, 1, 180 );
             decal.pushDistance = EditorGUILayout.FloatField( "Push Distance", decal.pushDistance );
-            decal.pushDistance = Mathf.Clamp( decal.pushDistance, 0.01f, 0.1f );
+            decal.pushDistance = Mathf.Clamp( decal.pushDistance, 0.00001f, 10.0f );
             decal.affectedLayers = GUIUtils.LayerMaskField( "Affected Layers", decal.affectedLayers );
 
             EditorGUILayout.Separator();
@@ -94,7 +94,8 @@ namespace _Decal {
 
 
             Vector3 scale = decal.transform.localScale;
-            Sprite sprite = decal.sprite;
+            //  Sprite sprite = decal.sprite;
+            /*
             if (sprite != null) {
                 float ratio = sprite.rect.width / sprite.rect.height;
 
@@ -109,6 +110,7 @@ namespace _Decal {
                     scale.x = scale.y * ratio;
                 }
             }
+             */
             decal.transform.localScale = scale;
             oldScale = scale;
 

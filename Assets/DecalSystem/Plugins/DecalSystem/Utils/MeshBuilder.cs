@@ -54,13 +54,10 @@ namespace _Decal {
             texCoords.Add( new Vector2( u, v ) );
         }
 
-
-
-
-
         public void Push(float distance) {
+
             for (int i = 0; i < vertices.Count; i++) {
-                vertices[i] += normals[i] * 0.001f;
+                vertices[i] += normals[i] * distance;
             }
         }
 
