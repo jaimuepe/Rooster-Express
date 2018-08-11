@@ -556,7 +556,11 @@ PlayerSettings:
   webGLUseEmbeddedResources: 0
   webGLCompressionFormat: 1
   webGLLinkerTarget: 1
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    1: CROSS_PLATFORM_INPUT
+    4: CROSS_PLATFORM_INPUT;MOBILE_INPUT
+    7: CROSS_PLATFORM_INPUT;MOBILE_INPUT
+    14: MOBILE_INPUT
   platformArchitecture:
     iOS: 2
   scriptingBackend:
@@ -648,7 +652,7 @@ PlayerSettings:
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
   cloudProjectId: 87c13a42-d3ab-450a-a4a3-6e13464fc497
-  projectName: RenderingCommandBuffers
+  projectName: Overworked
   organizationId: jaimuepe
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
