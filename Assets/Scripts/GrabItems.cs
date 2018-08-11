@@ -48,9 +48,11 @@ public class GrabItems : MonoBehaviour
     public bool CarryingItem { get { return boxTransform != null; } }
     public Transform BoxTransform { get { return boxTransform; } }
 
-    public void DropBox()
+    public void DropBox(float forceOfDrop)
     {
         boxTransform.GetComponent<Rigidbody>().isKinematic = false;
+        boxTransform.GetComponent<Rigidbody>().AddForce((transform.TransformDirection(Vector3.forward) * forceOfDrop) + (transform.TransformDirection(Vector3.up) * forceOfDrop), ForceMode.Impulse);
+        boxTransform.GetComponent<Rigidbody>().AddTorque(transform.TransformDirection(Vector3.right) * forceOfDrop / 50f, ForceMode.Impulse);
         boxTransform = null;
     }
 
