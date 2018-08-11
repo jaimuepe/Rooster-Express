@@ -4,36 +4,58 @@ using UnityEngine;
 
 public class GrabItems : MonoBehaviour
 {
-
-    private bool carrying = false;
-    private Collider caja;
     public float distance;
 
-    // Update is called once per frame
+    private Transform boxTransform;
+    private Transform _transform;
+    private BoxCollider detectionCollider;
+
+    public LayerMask pickUpMask;
+
+    private void Start()
+    {
+        _transform = transform;
+        detectionCollider = GetComponent<BoxCollider>();
+    }
+
+    Collider[] boxes = new Collider[3];
+
     void Update()
     {
-        if (carrying)
+        if (CarryingItem)
         {
-            caja.GetComponent<Rigidbody>().isKinematic = true;
-            caja.transform.position = transform.position + distance * transform.TransformDirection(Vector3.forward);
-            caja.transform.forward = transform.forward;
+            boxTransform.position = transform.position + distance * transform.TransformDirection(Vector3.forward);
+            boxTransform.forward = transform.forward;
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    public void TryPickUpBox()
     {
-        if (other.gameObject.CompareTag("Caja"))
+        int results = Physics.OverlapBoxNonAlloc(
+            _transform.position,
+            detectionCollider.size * 0.5f,
+            boxes,
+            _transform.rotation,
+            pickUpMask);
+
+        if (results > 0)
         {
-            caja = other;
-            if (Input.GetButtonUp("Jump") && carrying == true)
-            {
-                other.GetComponent<Rigidbody>().isKinematic = false;
-                carrying = false;
-            }
-            else if (Input.GetButtonUp("Jump") && carrying == false)
-            {
-                carrying = true;
-            }
+            PickUpBox(boxes[0].gameObject);
         }
+    }
+
+    public bool CarryingItem { get { return boxTransform != null; } }
+    public Transform BoxTransform { get { return boxTransform; } }
+
+    public void DropBox()
+    {
+        boxTransform.GetComponent<Rigidbody>().isKinematic = false;
+        boxTransform = null;
+    }
+
+    private void PickUpBox(GameObject box)
+    {
+        boxTransform = box.transform;
+        boxTransform.GetComponent<Rigidbody>().isKinematic = true;
     }
 }

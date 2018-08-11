@@ -1,13 +1,10 @@
 ﻿using _Decal;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PackageTagsGenerator : MonoBehaviour
 {
     public GameObject testObject;
     public Material[] decalMaterials;
-    public Sprite[] decalSprites;
 
     private void Update()
     {
@@ -44,12 +41,12 @@ public class PackageTagsGenerator : MonoBehaviour
             float aspectRatio = (float) mat.mainTexture.height / mat.mainTexture.width;
             Debug.Log(mat.mainTexture.name + ", " + aspectRatio);
 
-            decalTransform.localScale = new Vector3(0.5f, 0.5f * aspectRatio, 3.0f);
+            decalTransform.localScale = new Vector3(0.2f, 0.2f * aspectRatio, 3.0f);
             decalTransform.position -= new Vector3(0.0f, 0.0f, 1.5f);
             decalTransform.SetParent(decalContainerTransform, false);
 
             Decal decal = decalObj.AddComponent<Decal>();
-            decal.maxAngle = 180;
+            decal.maxAngle = 60;
             decal.pushDistance = depth;
             decal.material = mat;
 

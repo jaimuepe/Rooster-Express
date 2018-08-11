@@ -9,8 +9,6 @@ public class RotateWithMouse : MonoBehaviour
     void Start()
     {
         _transform = transform;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     public float speed;

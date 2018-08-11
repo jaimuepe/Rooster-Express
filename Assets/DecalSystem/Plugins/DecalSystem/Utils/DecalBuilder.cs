@@ -1,9 +1,5 @@
-﻿#if UNITY_EDITOR
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
-using UnityEditor;
-using UnityEditor.SceneManagement;
 
 namespace _Decal
 {
@@ -16,32 +12,11 @@ namespace _Decal
         public static void BuildAndSetDirty(Decal decal, GameObject gameObject)
         {
             Build(builder, decal, gameObject);
-
-            if (decal.gameObject.scene.IsValid())
-            {
-                if (!EditorApplication.isPlaying)
-                {
-                    EditorSceneManager.MarkSceneDirty(decal.gameObject.scene);
-                }
-            }
-            else
-            {
-                EditorUtility.SetDirty(decal.gameObject);
-            }
         }
 
         public static GameObject[] BuildAndSetDirty(Decal decal)
         {
             var affectedObjects = Build(builder, decal);
-
-            if (decal.gameObject.scene.IsValid())
-            {
-                if (!EditorApplication.isPlaying) EditorSceneManager.MarkSceneDirty(decal.gameObject.scene);
-            }
-            else
-            {
-                EditorUtility.SetDirty(decal.gameObject);
-            }
 
             return affectedObjects;
         }
@@ -167,9 +142,5 @@ namespace _Decal
             rect.height /= texture.height;
             return rect;
         }
-
-
     }
-
 }
-#endif

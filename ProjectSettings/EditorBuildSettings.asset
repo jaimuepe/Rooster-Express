@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/DecalSystem/Demo/Demo.unity
-    guid: 9eda6808c66ab1c46ab0f16df5b62ea1
+    path: Assets/MapScene.unity
+    guid: 1b2ed1d4c8c3165478f447a90f1ac555
   m_configObjects: {}
