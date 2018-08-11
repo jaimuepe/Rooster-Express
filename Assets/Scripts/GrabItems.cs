@@ -26,6 +26,8 @@ public class GrabItems : MonoBehaviour
         {
             boxTransform.position = transform.position + distance * transform.TransformDirection(Vector3.forward);
             boxTransform.forward = transform.forward;
+
+
         }
     }
 

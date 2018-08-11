@@ -10,7 +10,7 @@ public class PackageTagsGenerator : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            GenerateTags(testObject, 5);
+            GenerateTags(testObject, 3);
         }
     }
     public void GenerateTags(GameObject baseObject, int ammountOfTags)
@@ -41,7 +41,7 @@ public class PackageTagsGenerator : MonoBehaviour
             float aspectRatio = (float) mat.mainTexture.height / mat.mainTexture.width;
             Debug.Log(mat.mainTexture.name + ", " + aspectRatio);
 
-            decalTransform.localScale = new Vector3(0.2f, 0.2f * aspectRatio, 3.0f);
+            decalTransform.localScale = new Vector3(0.1f, 0.1f * aspectRatio, 3.0f);
             decalTransform.position -= new Vector3(0.0f, 0.0f, 1.5f);
             decalTransform.SetParent(decalContainerTransform, false);
 
