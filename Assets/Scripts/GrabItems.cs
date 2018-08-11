@@ -27,14 +27,13 @@ public class GrabItems : MonoBehaviour
             boxTransform.position = transform.position + distance * transform.TransformDirection(Vector3.forward);
             boxTransform.forward = transform.forward;
 
-
         }
     }
 
     public void TryPickUpBox()
     {
         int results = Physics.OverlapBoxNonAlloc(
-            _transform.position,
+            _transform.position + _transform.TransformDirection(detectionCollider.center),
             detectionCollider.size * 0.5f,
             boxes,
             _transform.rotation,
@@ -59,5 +58,7 @@ public class GrabItems : MonoBehaviour
     {
         boxTransform = box.transform;
         boxTransform.GetComponent<Rigidbody>().isKinematic = true;
+        BoxCollider boxC = boxTransform.GetComponent<BoxCollider>();
+        distance = boxC.size.z;
     }
 }
