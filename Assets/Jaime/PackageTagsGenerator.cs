@@ -3,14 +3,13 @@ using UnityEngine;
 
 public class PackageTagsGenerator : MonoBehaviour
 {
-    public GameObject testObject;
     public Material[] decalMaterials;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            GenerateTags(testObject, 3);
+            // GenerateTags(testObject, 3);
         }
     }
     public void GenerateTags(GameObject baseObject, int ammountOfTags)

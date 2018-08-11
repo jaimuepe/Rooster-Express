@@ -59,6 +59,6 @@ public class GrabItems : MonoBehaviour
         boxTransform = box.transform;
         boxTransform.GetComponent<Rigidbody>().isKinematic = true;
         BoxCollider boxC = boxTransform.GetComponent<BoxCollider>();
-        distance = boxC.size.z;
+        distance = boxC.size.z * 0.5f;
     }
 }
