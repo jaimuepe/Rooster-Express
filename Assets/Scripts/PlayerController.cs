@@ -2,33 +2,49 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
-    
-    public Transform camera;
+[RequireComponent(typeof(Rigidbody))]
+public class PlayerController : MonoBehaviour
+{
+    private Transform _transform;
+    private Transform cameraTransform;
+    private Rigidbody rb;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-    void Update () {
-        playerMovement();
-	}
+    public float speed;
 
-    private void playerMovement() {
+    // Use this for initialization
+    void Start()
+    {
+        _transform = transform;
+        cameraTransform = Camera.main.transform;
+        rb = GetComponent<Rigidbody>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        PlayerMovement();
+    }
+
+    private void PlayerMovement()
+    {
+
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
-        var x = moveHorizontal * Time.deltaTime * 3.0f;
-        var z = moveVertical * Time.deltaTime * 3.0f;
+        var x = moveHorizontal * Time.deltaTime * speed;
+        var z = moveVertical * Time.deltaTime * speed;
 
-        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, camera.localEulerAngles.y, transform.localEulerAngles.z);
+        Vector3 cameraFwd = cameraTransform.TransformDirection(Vector3.forward);
+        Vector3 cameraRight = Vector3.Cross(Vector3.up, cameraFwd);
 
-        transform.Translate(x, 0, 0);
-        transform.Translate(0, 0, z);
+        Vector3 fwd = Vector3.Cross(cameraRight, Vector3.up);
 
-        Vector3 movement = new Vector3(camera.eulerAngles.y * x, 0.0f, camera.eulerAngles.y * z);
-        transform.rotation = Quaternion.LookRotation(movement);
+        rb.MovePosition(transform.position + x * cameraRight + z * fwd);
+
+        if (moveHorizontal != 0.0f || moveVertical != 0.0f)
+        {
+            Vector3 direction = (x * cameraRight + z * fwd).normalized;
+            _transform.forward = direction;
+        }
     }
 }
