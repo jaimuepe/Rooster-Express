@@ -23,8 +23,15 @@ public class GameManager : MonoBehaviour {
 	}
 
     public void incrementPoints(float points) {
-        this.playerPoints += points;
+        this.playerPoints += 1;
         pointsUI.text = "Points: " + playerPoints.ToString();
+        Debug.Log("Caja correcta");
+    }
+
+    public void decrementPoints(float points) {
+        this.playerPoints -= 1;
+        pointsUI.text = "Points: " + playerPoints.ToString();
+        Debug.Log("Caja incorrecta");
     }
 
 }
