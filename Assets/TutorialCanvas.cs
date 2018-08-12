@@ -14,13 +14,19 @@ public class TutorialCanvas : MonoBehaviour
 
     public float textFadeTime;
 
+    BossScreen screen;
+
+    private void Start()
+    {
+        screen = FindObjectOfType<BossScreen>();
+    }
+
     public IEnumerator DisplayCommand(string text)
     {
         return Coroutines.Chain(
          Coroutines.Join(
              Coroutines.Wrap(() => commandtext.text = text),
              Coroutines.FadeAlpha01(commandtext, textFadeTime)
-             // Coroutines.FadeAlpha01(commandPanel, textFadeTime)
              ));
     }
 
@@ -28,7 +34,6 @@ public class TutorialCanvas : MonoBehaviour
     {
         return Coroutines.Join(
                 Coroutines.FadeAlpha10(commandtext, textFadeTime)
-               //  Coroutines.FadeAlpha10(commandPanel, textFadeTime)
                 );
     }
 
@@ -36,14 +41,14 @@ public class TutorialCanvas : MonoBehaviour
     {
         return Coroutines.Chain(
             Coroutines.Join(
+                Coroutines.Wrap(() => screen.Talk()),
                 Coroutines.Wrap(() => tutorialText.text = text),
                 Coroutines.FadeAlpha01(tutorialText, textFadeTime)
-                //Coroutines.FadeAlpha01(tutorialPanel, textFadeTime)
                 ),
             Coroutines.Wait(length),
             Coroutines.Join(
-                Coroutines.FadeAlpha10(tutorialText, textFadeTime)
-                //Coroutines.FadeAlpha10(tutorialPanel, textFadeTime)
+                Coroutines.FadeAlpha10(tutorialText, textFadeTime),
+                 Coroutines.Wrap(() => screen.Relaxed())
                 )
         );
     }

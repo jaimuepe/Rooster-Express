@@ -55,6 +55,14 @@ public class Coroutines
         return Chain(Wrap(first), Wait(delay), Wrap(then));
     }
 
+    public static IEnumerator IfCondition(Predicate<object> predicate, IEnumerator action)
+    {
+        if (predicate.Invoke(null))
+        {
+            yield return action;
+        }
+    }
+
     /// <summary>
     /// Returns a coroutine composed by others coroutines. They will be executed in parallel.
     /// The length of the composed coroutine will be equal to the length of the last coroutine.
@@ -74,6 +82,33 @@ public class Coroutines
                 actions[i].Run();
             }
         }
+    }
+
+    public static IEnumerator BlinkFastFast(Material mat, string propName, float duration, float blinkFrequencyStart, float blinkFrequencyEnd)
+    {
+        float t = 0.0f;
+        Color realStartColor = mat.color;
+        Color startColor = mat.color;
+        Color endColor = Color.black;
+
+        while (t <= duration)
+        {
+            float frequency = Mathf.Lerp(blinkFrequencyStart, blinkFrequencyEnd, t / duration);
+
+            Debug.Log("Blinking at " + frequency + " seconds");
+
+            yield return Join(
+                FadeColor(mat, propName, 0.1f, startColor, endColor),
+                Wait(frequency));
+
+            Color tmpColor = startColor;
+            startColor = endColor;
+            endColor = tmpColor;
+
+            t += Mathf.Max(0.1f, frequency);
+        }
+
+        mat.SetColor(propName, realStartColor);
     }
 
     /// <summary>
@@ -233,10 +268,11 @@ public class Coroutines
 
     public static IEnumerator WaitFor(Predicate<object> predicate)
     {
-        while (!predicate.Invoke(null))
+        do
         {
             yield return null;
         }
+        while (!predicate.Invoke(null));
     }
 
     /// <summary>

@@ -53,4 +53,9 @@ public class WaveInfo
     public int maxNumberOfDecals;
 
     public float spawnAfterSeconds;
+
+    public bool canSpawnGarbage = true;
+    public bool canSpawnCrossedLabel = true;
+
+    public string districtCode = null;
 }

@@ -47,18 +47,16 @@ public class PlayerController : MonoBehaviour
 
     public float mouseRotationSpeed;
 
-    // TUTORIAL
-    public bool playerGrabbedFirstBox;
-    public bool playerInspectedFirstBox;
-
     Animator animator;
 
+    GameManager gm;
     void Start()
     {
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
+        gm = FindObjectOfType<GameManager>();
         animator = GetComponent<Animator>();
 
         mainCamera = Camera.main;
@@ -185,7 +183,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else if (Input.GetButtonDown("Fire2"))
                 {
-                    playerInspectedFirstBox = true;
+                    gm.playerInspectedFirstBox = true;
                     EnterDetailView();
                 }
             }
@@ -197,7 +195,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (grabber.TryPickUpBox())
                 {
-                    playerGrabbedFirstBox = true;
+                    gm.playerGrabbedFirstBox = true;
                 }
             }
         }
