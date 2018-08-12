@@ -567,7 +567,7 @@ Prefab:
     - target: {fileID: 114327754944155122, guid: d48535b179189415da5a8c6076406d7a,
         type: 2}
       propertyPath: force
-      value: 1.5
+      value: 0.35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d48535b179189415da5a8c6076406d7a, type: 2}
@@ -660,6 +660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 370b0287e247f0543b31adda30126d79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  followSpeed: 0
 --- !u!4 &439535492 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 1f3e65966f905f7488d1b22a1da1ead8,
@@ -1105,7 +1106,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 1181918e728ac4b42b7b9d2d33717b41, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.19302
+      value: -7.465
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1181918e728ac4b42b7b9d2d33717b41, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1341,7 +1342,7 @@ Prefab:
     - target: {fileID: 114327754944155122, guid: d48535b179189415da5a8c6076406d7a,
         type: 2}
       propertyPath: force
-      value: 1.5
+      value: 0.35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d48535b179189415da5a8c6076406d7a, type: 2}
@@ -1923,7 +1924,7 @@ Rigidbody:
   m_GameObject: {fileID: 1088129030}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 5
+  m_Drag: 7
   m_AngularDrag: 10
   m_UseGravity: 0
   m_IsKinematic: 0
@@ -1941,13 +1942,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed9881889e87f4b5aab748878bc4abaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
-  speedMultiplier: 1.1
+  speed: 10
+  speedMultiplier: 1.3
   dragDivisor: 3
   maxForce: 40
   maxTimerThrow: 1.5
+  minimumDrag: 3.5
+  dragDecrement: 0.5
+  dragIncrement: 0.2
   smoothDamp: 0.1
   detailCameraContainerTransform: {fileID: 1851919807}
+  detailZoomSpeed: 0
+  minDetailDistance: 0
+  maxDetailDistance: 0
+  mouseRotationSpeed: 0
 --- !u!4 &1088129036
 Transform:
   m_ObjectHideFlags: 0
