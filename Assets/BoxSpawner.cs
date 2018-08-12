@@ -20,7 +20,6 @@ public class BoxSpawner : MonoBehaviour
     private void Start()
     {
         codes = new string[] { "A", "B", "C", "D", "E" };
-        SpawnBoxes(ammountOfBoxes);
     }
 
 #if UNITY_EDITOR
@@ -30,12 +29,18 @@ public class BoxSpawner : MonoBehaviour
         {
             SpawnBoxes(ammountOfBoxes);
         }
-#endif    
     }
 
     public void SpawnBoxes(int ammountOfBoxes)
     {
-        StartCoroutine(SpawnBoxDelayed(ammountOfBoxes));
+        StartCoroutine(SpawnBoxesDelayed(ammountOfBoxes, minScale, maxScale, ammountOfDecals, ammountOfDecals));
+    }
+#endif    
+
+    public void SpawnBoxes(WaveInfo waveInfo)
+    {
+        int nBoxes = Random.Range(waveInfo.minNumberOfBoxes, waveInfo.maxNumberOfBoxes);
+        StartCoroutine(SpawnBoxesDelayed(nBoxes, minScale, maxScale, waveInfo.minNumberOfDecals, waveInfo.maxNumberOfDecals)); 
     }
 
     public void GenerateTags(GameObject baseObject, int ammountOfTags)
@@ -80,7 +85,7 @@ public class BoxSpawner : MonoBehaviour
         }
     }
 
-    IEnumerator SpawnBoxDelayed(int ammoutOfBoxes)
+    IEnumerator SpawnBoxesDelayed(int ammoutOfBoxes, float minScale, float maxScale, int minDecals, int maxDecals)
     {
         for (int i = 0; i < ammoutOfBoxes; i++)
         {
@@ -92,7 +97,7 @@ public class BoxSpawner : MonoBehaviour
 
             boxTransform.localScale = scale * Vector3.one;
 
-            GenerateTags(box, ammountOfDecals);
+            GenerateTags(box, Random.Range(minDecals, maxDecals));
             box.gameObject.GetComponent<Rigidbody>().mass *= scale;
             box.GetComponent<Caja>().points *= scale;
             box.GetComponent<Caja>().code = codes[Random.Range(0, 5)];
