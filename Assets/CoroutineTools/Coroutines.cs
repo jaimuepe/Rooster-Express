@@ -88,6 +88,18 @@ public class Coroutines
     }
 
     /// <summary>
+    /// Returns a coroutine that fades the alpha of an image in a given time from 0 to 1.
+    /// </summary>
+    /// <param name="image">image to be faded.</param>
+    /// <param name="duration">Fade duration.</param>
+    /// <returns>The resulting coroutine.</returns>
+    public static IEnumerator FadeAlpha01(Text text, float duration)
+    {
+        Color c = text.color;
+        return FadeColor(text, duration, new Color(c.r, c.g, c.b, 0.0f), new Color(c.r, c.g, c.b, 1.0f));
+    }
+
+    /// <summary>
     /// Returns a coroutine that fades the alpha of an image in a given time from 1 to 0.
     /// </summary>
     /// <param name="image">image to be faded.</param>
@@ -97,6 +109,12 @@ public class Coroutines
     {
         Color c = image.color;
         return FadeColor(image, duration, new Color(c.r, c.g, c.b, 1.0f), new Color(c.r, c.g, c.b, 0.0f));
+    }
+
+    public static IEnumerator FadeAlpha10(Text text, float duration)
+    {
+        Color c = text.color;
+        return FadeColor(text, duration, new Color(c.r, c.g, c.b, 1.0f), new Color(c.r, c.g, c.b, 0.0f));
     }
 
     /// <summary>
@@ -161,6 +179,26 @@ public class Coroutines
         mat.SetColor(varName, c);
     }
 
+    public static IEnumerator FadeColor(Text text, float duration, Color startColor, Color endColor)
+    {
+        if (duration > 0.0f)
+        {
+
+            text.color = startColor;
+            float t = 0.0f;
+
+            while (t <= duration)
+            {
+                text.color = Color.Lerp(startColor, endColor, t / duration);
+
+                t += Time.deltaTime;
+                yield return null;
+            }
+        }
+
+        text.color = endColor;
+    }
+
     public static IEnumerator FadeColor(Light light, float duration, Color startColor, Color endColor)
     {
         if (duration > 0.0f)
@@ -190,6 +228,14 @@ public class Coroutines
     public static IEnumerator FadeVolume(AudioSource source, float duration, float endVolume)
     {
         return FadeVolume(source, duration, -1.0f, endVolume);
+    }
+
+    public static IEnumerator WaitFor(Predicate<object> predicate)
+    {
+        while (!predicate.Invoke(null))
+        {
+            yield return null;
+        }
     }
 
     /// <summary>

@@ -317,7 +317,7 @@ MonoBehaviour:
       size: 1
       luminanceContribution: 0.8
   vignette:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       mode: 1
       color: {r: 0, g: 0, b: 0, a: 1}
@@ -325,7 +325,7 @@ MonoBehaviour:
       intensity: 0.45
       smoothness: 0.2
       roundness: 1
-      mask: {fileID: 2800000, guid: 0ec98f7f5230ad24ea436cc82d393801, type: 3}
+      mask: {fileID: 2800000, guid: 1f2894b59b3f1114f8227143a8d2ce0e, type: 3}
       opacity: 1
       rounded: 0
   dithering:

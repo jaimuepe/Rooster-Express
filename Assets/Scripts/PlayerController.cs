@@ -47,6 +47,9 @@ public class PlayerController : MonoBehaviour
 
     public float mouseRotationSpeed;
 
+    // TUTORIAL
+    public bool playerGrabbedFirstBox;
+
     Animator animator;
 
     void Start()
@@ -172,7 +175,10 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetButtonUp("Fire1"))
             {
-                grabber.TryPickUpBox();
+                if (grabber.TryPickUpBox())
+                {
+                    playerGrabbedFirstBox = true;
+                }
             }
         }
 

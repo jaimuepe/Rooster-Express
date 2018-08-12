@@ -30,7 +30,7 @@ public class GrabItems : MonoBehaviour
         }
     }
 
-    public void TryPickUpBox()
+    public bool TryPickUpBox()
     {
         int results = Physics.OverlapBoxNonAlloc(
             _transform.position + _transform.TransformDirection(detectionCollider.center),
@@ -42,7 +42,9 @@ public class GrabItems : MonoBehaviour
         if (results > 0)
         {
             PickUpBox(boxes[0].gameObject);
+            return true;
         }
+        return false;
     }
 
     public bool CarryingItem { get { return boxTransform != null; } }

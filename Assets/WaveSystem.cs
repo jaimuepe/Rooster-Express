@@ -8,6 +8,8 @@ public class WaveSystem : MonoBehaviour
     public WaveInfo[] waves;
     private BoxSpawner spawner;
 
+    public GameObject ramp;
+
     private void Start()
     {
         spawner = FindObjectOfType<BoxSpawner>();
@@ -28,6 +30,16 @@ public class WaveSystem : MonoBehaviour
             yield return new WaitForSeconds(waves[i].spawnAfterSeconds);
             spawner.SpawnBoxes(waves[i]);
         }
+    }
+
+    public void TurnOnRamp()
+    {
+        Renderer r = ramp.GetComponent<Renderer>();
+    }
+
+    public void TurnOffRamp()
+    {
+        Renderer r = ramp.GetComponent<Renderer>();
     }
 }
 
