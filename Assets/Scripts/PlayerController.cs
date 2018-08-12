@@ -72,17 +72,33 @@ public class PlayerController : MonoBehaviour
 
         detailCamera = detailCameraContainerTransform.GetComponentInChildren<Camera>();
     }
+    float scale = 1.0f;
 
     // Update is called once per frame
     void Update()
     {
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (scale == 1.0f)
+            {
+                scale = .1f;
+
+            } else {
+                scale = 1.0f;
+            }
+            Time.timeScale = scale;
+        }
+#endif
         if (!detailView)
         {
+
             PlayerMovement();
         }
 
         if (grabber.CarryingItem)
         {
+            animator.SetBool("extendedArms", true);
             if (detailView)
             {
                 if (Input.GetButtonDown("Fire1") || Input.GetButtonDown("Fire2"))
@@ -158,6 +174,7 @@ public class PlayerController : MonoBehaviour
                 }
                 if (Input.GetButtonUp("Fire1"))
                 {
+                    animator.SetTrigger("throwing");
                     float forceOfDrop = 0f;
                     forceOfDrop = maxForce * Mathf.Clamp01(deltaTimeForce / maxTimerThrow);
                     Debug.Log("Time: " + deltaTimeForce + ", force: " + forceOfDrop);
@@ -173,6 +190,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            animator.SetBool("extendedArms", false);
             if (Input.GetButtonUp("Fire1"))
             {
                 if (grabber.TryPickUpBox())

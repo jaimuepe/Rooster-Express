@@ -985,6 +985,7 @@ MonoBehaviour:
   minDetailDistance: -2
   maxDetailDistance: -0.3
   mouseRotationSpeed: 0
+  playerGrabbedFirstBox: 0
 --- !u!136 &136815305440406476
 CapsuleCollider:
   m_ObjectHideFlags: 1

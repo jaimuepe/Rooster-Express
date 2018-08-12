@@ -67,6 +67,7 @@ ModelImporter:
     7400002: Run
     7400004: TakeBox
     7400006: ThrowBox
+    7400008: Carrying
     9500000: //RootNode
     13700000: Panda
   externalObjects:
@@ -189,7 +190,7 @@ ModelImporter:
     - serializedVersion: 16
       name: ThrowBox
       takeName: Take 001
-      firstFrame: 115
+      firstFrame: 120
       lastFrame: 135
       wrapMode: 0
       orientationOffsetY: 0
@@ -210,9 +211,153 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bone003
+        weight: 0
+      - path: Bone003/Bone012
+        weight: 0
+      - path: Bone003/Bone012/Bone013
+        weight: 0
+      - path: Bone003/Bone012/Bone013/Bone014
+        weight: 0
+      - path: Bone003/Bone012/Bone013/Bone014/Bone015
+        weight: 0
+      - path: Bone003/Bone012/Bone013/Bone014/Bone015/Bone016
+        weight: 0
+      - path: Bone003/Bone012/Bone013/Bone014/Bone015/Bone016/Bone017
+        weight: 0
+      - path: Bone003/Bone012(mirrored)
+        weight: 0
+      - path: Bone003/Bone012(mirrored)/Bone013(mirrored)
+        weight: 0
+      - path: Bone003/Bone012(mirrored)/Bone013(mirrored)/Bone014(mirrored)
+        weight: 0
+      - path: Bone003/Bone012(mirrored)/Bone013(mirrored)/Bone014(mirrored)/Bone015(mirrored)
+        weight: 0
+      - path: Bone003/Bone012(mirrored)/Bone013(mirrored)/Bone014(mirrored)/Bone015(mirrored)/Bone016(mirrored)
+        weight: 0
+      - path: Bone003/Bone012(mirrored)/Bone013(mirrored)/Bone014(mirrored)/Bone015(mirrored)/Bone016(mirrored)/Bone017(mirrored)
+        weight: 0
+      - path: Bone003/Bone019
+        weight: 0
+      - path: Bone005
+        weight: 1
+      - path: Bone005/Bone006
+        weight: 1
+      - path: Bone005/Bone006/Bone001
+        weight: 1
+      - path: Bone005/Bone006/Bone001/Bone018
+        weight: 1
+      - path: Bone005/Bone006/Bone001/Bone018(mirrored)
+        weight: 1
+      - path: Bone005/Bone006/Bone007
+        weight: 1
+      - path: Bone005/Bone006/Bone007/Bone008
+        weight: 1
+      - path: Bone005/Bone006/Bone007/Bone008/Bone009
+        weight: 1
+      - path: Bone005/Bone006/Bone007/Bone008/Bone009/Bone010
+        weight: 1
+      - path: Bone005/Bone006/Bone007(mirrored)
+        weight: 1
+      - path: Bone005/Bone006/Bone007(mirrored)/Bone008(mirrored)
+        weight: 1
+      - path: Bone005/Bone006/Bone007(mirrored)/Bone008(mirrored)/Bone009(mirrored)
+        weight: 1
+      - path: Bone005/Bone006/Bone007(mirrored)/Bone008(mirrored)/Bone009(mirrored)/Bone010(mirrored)
+        weight: 1
+      - path: Panda
+        weight: 1
+      maskType: 1
+      maskSource: {fileID: 31900000, guid: e90b23a3486fd4fbebef32da9586a58c, type: 2}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Carrying
+      takeName: Take 001
+      firstFrame: 129.22
+      lastFrame: 129.3
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bone003
+        weight: 0
+      - path: Bone003/Bone012
+        weight: 0
+      - path: Bone003/Bone012/Bone013
+        weight: 0
+      - path: Bone003/Bone012/Bone013/Bone014
+        weight: 0
+      - path: Bone003/Bone012/Bone013/Bone014/Bone015
+        weight: 0
+      - path: Bone003/Bone012/Bone013/Bone014/Bone015/Bone016
+        weight: 0
+      - path: Bone003/Bone012/Bone013/Bone014/Bone015/Bone016/Bone017
+        weight: 0
+      - path: Bone003/Bone012(mirrored)
+        weight: 0
+      - path: Bone003/Bone012(mirrored)/Bone013(mirrored)
+        weight: 0
+      - path: Bone003/Bone012(mirrored)/Bone013(mirrored)/Bone014(mirrored)
+        weight: 0
+      - path: Bone003/Bone012(mirrored)/Bone013(mirrored)/Bone014(mirrored)/Bone015(mirrored)
+        weight: 0
+      - path: Bone003/Bone012(mirrored)/Bone013(mirrored)/Bone014(mirrored)/Bone015(mirrored)/Bone016(mirrored)
+        weight: 0
+      - path: Bone003/Bone012(mirrored)/Bone013(mirrored)/Bone014(mirrored)/Bone015(mirrored)/Bone016(mirrored)/Bone017(mirrored)
+        weight: 0
+      - path: Bone003/Bone019
+        weight: 0
+      - path: Bone005
+        weight: 1
+      - path: Bone005/Bone006
+        weight: 1
+      - path: Bone005/Bone006/Bone001
+        weight: 1
+      - path: Bone005/Bone006/Bone001/Bone018
+        weight: 1
+      - path: Bone005/Bone006/Bone001/Bone018(mirrored)
+        weight: 1
+      - path: Bone005/Bone006/Bone007
+        weight: 1
+      - path: Bone005/Bone006/Bone007/Bone008
+        weight: 1
+      - path: Bone005/Bone006/Bone007/Bone008/Bone009
+        weight: 1
+      - path: Bone005/Bone006/Bone007/Bone008/Bone009/Bone010
+        weight: 1
+      - path: Bone005/Bone006/Bone007(mirrored)
+        weight: 1
+      - path: Bone005/Bone006/Bone007(mirrored)/Bone008(mirrored)
+        weight: 1
+      - path: Bone005/Bone006/Bone007(mirrored)/Bone008(mirrored)/Bone009(mirrored)
+        weight: 1
+      - path: Bone005/Bone006/Bone007(mirrored)/Bone008(mirrored)/Bone009(mirrored)/Bone010(mirrored)
+        weight: 1
+      - path: Panda
+        weight: 1
+      maskType: 1
+      maskSource: {fileID: 31900000, guid: e90b23a3486fd4fbebef32da9586a58c, type: 2}
       additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
