@@ -27,7 +27,7 @@ public class BoxSpawner : MonoBehaviour
     public int ammountOfBoxes;
     public int ammountOfDecals;
 
-    private void Start()
+    private void Awake()
     {
         codes = new string[] { "A", "B", "C", "D", "E" };
     }
@@ -68,11 +68,33 @@ public class BoxSpawner : MonoBehaviour
 
         int districtIndex = GetDistrictIndex(districtCode);
 
-        Material districtDecal = districtDecals[districtIndex];
-        GenerateTag(baseObject, baseTransform, districtDecal, ref depth);
+        bool useBigDecal = Random.Range(0.0f, 1.0f) > 0.5f;
+        if (useBigDecal)
+        {
+            Material districtDecalBig = districtDecalsBig[districtIndex];
+            GenerateTag(baseObject, baseTransform, districtDecalBig, ref depth);
+        }
+        else
+        {
+            Material districtDecal = districtDecalsBigCrossed[AnotherRandomDistrict(districtIndex)];
+            GenerateTag(baseObject, baseTransform, districtDecal, ref depth);
+
+            Material districtDecalSmall = districtDecals[districtIndex];
+            GenerateTag(baseObject, baseTransform, districtDecalSmall, ref depth);
+        }
 
         Material colorDecal = colorDecals[districtIndex];
         GenerateTag(baseObject, baseTransform, colorDecal, ref depth);
+    }
+
+    int AnotherRandomDistrict(int distIndex)
+    {
+        List<int> indices = new List<int>()
+        {
+            0, 1, 2, 3
+        };
+        indices.Remove(distIndex);
+        return indices.GetRandomItem();
     }
 
     private void GenerateTag(GameObject baseObject, Transform baseTransform, Material decalMaterial, ref float depth)

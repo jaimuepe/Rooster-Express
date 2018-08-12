@@ -29,6 +29,7 @@ public class Tutorial : MonoBehaviour
         };
 
         StartCoroutine(Coroutines.Chain(
+            /*
             Coroutines.Wait(2.0f),
             tutorialCanvas.DisplayText("Hello!", 3.0f),
             Coroutines.Wait(1.0f),
@@ -38,13 +39,23 @@ public class Tutorial : MonoBehaviour
             Coroutines.Wait(1.0f),
             tutorialCanvas.DisplayText("But you have to make sure they go in the right conveyor, or some clients won't receive their packages =(", 3.0f),
             Coroutines.Wait(1.0f),
+            */
             Coroutines.Join(
                 tutorialCanvas.DisplayText("Look, let's try it...", 1.0f),
                 Coroutines.Wrap(() => spawner.SpawnBoxes(waveInfo))),
             Coroutines.Wait(2.0f),
+            /*
             tutorialCanvas.DisplayCommand("Pick that box up to continue."),
             Coroutines.WaitFor(x => controller.playerGrabbedFirstBox),
             Coroutines.Join(
+                tutorialCanvas.HideCommand(),
+                tutorialCanvas.DisplayText("Good job!", 3.0f)),
+             */
+            tutorialCanvas.DisplayText("[explanation districts pt1]", 3.0f),
+            tutorialCanvas.DisplayText("[explanation districts pt2]", 3.0f),
+            tutorialCanvas.DisplayCommand("Inspet the box to continue."),
+            Coroutines.WaitFor(x => controller.playerInspectedFirstBox),
+             Coroutines.Join(
                 tutorialCanvas.HideCommand(),
                 tutorialCanvas.DisplayText("Good job!", 3.0f))
             ));

@@ -446,7 +446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialCanvas: {fileID: 473778404}
-  spawner: {fileID: 0}
+  spawner: {fileID: 1048625139}
 --- !u!4 &195082894
 Transform:
   m_ObjectHideFlags: 0
@@ -2344,15 +2344,25 @@ MonoBehaviour:
   - {fileID: 2100000, guid: f1c3046dcdf722340b0f0172f850109c, type: 2}
   - {fileID: 2100000, guid: 5ce1b920538ed9e4693a2a6a4484d98d, type: 2}
   districtDecals:
-  - {fileID: 2100000, guid: 78a41b958f9d1674cbd1e62d9ba04549, type: 2}
-  - {fileID: 2100000, guid: 3efc83068cab08b4883fd3640d02a4a5, type: 2}
-  - {fileID: 2100000, guid: 914a6da6d7167024b814920598997dea, type: 2}
-  - {fileID: 2100000, guid: bcfbe292992916d438a0160b7f4bb30f, type: 2}
-  colorDecals:
   - {fileID: 2100000, guid: 8c7585bec1831ab4a85b44dd945d3757, type: 2}
   - {fileID: 2100000, guid: 320b5e2566f1d6a40b9f8561aa1a3f09, type: 2}
   - {fileID: 2100000, guid: 1a8454fa191607749b3f05ffb1ee1d58, type: 2}
   - {fileID: 2100000, guid: db8846bede0c0e14480f428ec32338af, type: 2}
+  districtDecalsBig:
+  - {fileID: 2100000, guid: c46c3fd4e3df5a9408dc32f60940d65a, type: 2}
+  - {fileID: 2100000, guid: fbcb10b3030b6d34bbb3b573352a1e9b, type: 2}
+  - {fileID: 2100000, guid: c7bf0f2bfaeabf74eb4a764ac2bc64fa, type: 2}
+  - {fileID: 2100000, guid: 032fcfbfebd0ad74d8ec229876077246, type: 2}
+  districtDecalsBigCrossed:
+  - {fileID: 2100000, guid: ff7e8dd96eecf944f8c381d54c0305e9, type: 2}
+  - {fileID: 2100000, guid: ab032d9cce914c142a354fad8a51c741, type: 2}
+  - {fileID: 2100000, guid: fc0d3753f898e014ea9278322d41ce05, type: 2}
+  - {fileID: 2100000, guid: 9807634b9378fd44fa22071c7d9642cf, type: 2}
+  colorDecals:
+  - {fileID: 2100000, guid: 78a41b958f9d1674cbd1e62d9ba04549, type: 2}
+  - {fileID: 2100000, guid: 3efc83068cab08b4883fd3640d02a4a5, type: 2}
+  - {fileID: 2100000, guid: 914a6da6d7167024b814920598997dea, type: 2}
+  - {fileID: 2100000, guid: bcfbe292992916d438a0160b7f4bb30f, type: 2}
   urgentDecal: {fileID: 2100000, guid: fdfb7b6c65e03a14c9869be46caf74fb, type: 2}
   fragileDecal: {fileID: 2100000, guid: fca56ab82e2f4a14ea95f59a051082f0, type: 2}
   spawnArea:
@@ -2361,7 +2371,7 @@ MonoBehaviour:
     y: 5.2
     width: 1
     height: 1
-  ammountOfBoxes: 3
+  ammountOfBoxes: 1
   ammountOfDecals: 15
 --- !u!4 &1048625140
 Transform:
@@ -2565,6 +2575,7 @@ MonoBehaviour:
   maxDetailDistance: -0.3
   mouseRotationSpeed: 0
   playerGrabbedFirstBox: 0
+  playerInspectedFirstBox: 0
 --- !u!4 &1088129036
 Transform:
   m_ObjectHideFlags: 0

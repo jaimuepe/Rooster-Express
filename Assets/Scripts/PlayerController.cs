@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
 
     // TUTORIAL
     public bool playerGrabbedFirstBox;
+    public bool playerInspectedFirstBox;
 
     Animator animator;
 
@@ -126,7 +127,7 @@ public class PlayerController : MonoBehaviour
 
                         float moveHorizontal = Input.GetAxis("Horizontal");
                         float moveVertical = Input.GetAxis("Vertical");
-
+                        
                         if (moveHorizontal != 0.0f || moveVertical != 0.0f)
                         {
                             Vector3 displacement = detailCamera.transform.localPosition;
@@ -167,6 +168,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else if (Input.GetButtonDown("Fire2"))
                 {
+                    playerInspectedFirstBox = true;
                     EnterDetailView();
                 }
             }
