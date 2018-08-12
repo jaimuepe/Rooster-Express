@@ -8,38 +8,60 @@ public class WaveSystem : MonoBehaviour
     public WaveInfo[] waves;
     private BoxSpawner spawner;
 
-    public GameObject ramp;
+    public float totalGameTime;
+    public AnimationCurve wavesCurve;
+    public AnimationCurve boxesSpawnedInTimeCurve;
+    public AnimationCurve randomDecalsInTimeCurve;
+
+    private int lastWave = -1;
+    private float totalTime;
+
+    private bool started;
 
     private void Start()
     {
         spawner = FindObjectOfType<BoxSpawner>();
-#if UNITY_EDITOR
-        BeginWaves();
-#endif
     }
 
     public void BeginWaves()
     {
-        StartCoroutine(WaveSpawner());
+        started = true;
+        Debug.Log("Starting wave spawn...");
     }
 
-    IEnumerator WaveSpawner()
+    private void Update()
     {
-        for (int i = 0; i < waves.Length; i++)
+        if (!started) { return; }
+
+        int wave = (int)Math.Floor(wavesCurve.Evaluate(totalTime));
+        if (wave != lastWave)
         {
-            yield return new WaitForSeconds(waves[i].spawnAfterSeconds);
-            spawner.SpawnBoxes(waves[i]);
+            SpawnWave(wave);
+            lastWave = wave;
         }
+        totalTime += Time.deltaTime;
     }
 
-    public void TurnOnRamp()
+    private void SpawnWave(int wave)
     {
-        Renderer r = ramp.GetComponent<Renderer>();
-    }
+        int boxes = (int)boxesSpawnedInTimeCurve.Evaluate(totalTime);
+        int decals = (int)randomDecalsInTimeCurve.Evaluate(totalTime);
 
-    public void TurnOffRamp()
-    {
-        Renderer r = ramp.GetComponent<Renderer>();
+        Debug.Log("Spawning wave " + wave + ": boxes = " + boxes + ", decals = " + decals);
+
+        WaveInfo waveInfo = new WaveInfo
+        {
+            canSpawnCrossedLabel = true,
+            canSpawnGarbage = true,
+
+            minNumberOfBoxes = (int)Mathf.Floor(0.9f * boxesSpawnedInTimeCurve.Evaluate(totalTime)),
+            maxNumberOfBoxes = (int)Mathf.Ceil(1.1f * boxesSpawnedInTimeCurve.Evaluate(totalTime)),
+
+            minNumberOfDecals = (int)Mathf.Floor(0.9f * randomDecalsInTimeCurve.Evaluate(totalTime)),
+            maxNumberOfDecals = (int)Mathf.Floor(1.1f * randomDecalsInTimeCurve.Evaluate(totalTime))
+        };
+
+        spawner.SpawnBoxes(waveInfo);
     }
 }
 

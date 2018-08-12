@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
 
     public bool tutorialDifferentDisplaysExplained = false;
 
+    public WaveSystem waveSpawner;
+
     BossScreen bossScreen;
 
     void Start()
@@ -78,6 +80,14 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void StartGame()
+    {
+        playerCompletedFirstTask = true;
+        playerCompletedSecondtask = true;
+        waveSpawner.gameObject.SetActive(true);
+        waveSpawner.BeginWaves();
     }
 
     public void incrementPoints(float points)
