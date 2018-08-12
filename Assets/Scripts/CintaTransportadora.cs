@@ -25,8 +25,6 @@ public class CintaTransportadora : MonoBehaviour {
         {
             Debug.Log("Empujamos la caja");
             Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
-            Vector3 vector = rb.velocity;
-            rb.velocity = vector * 0.1f;
         }
     }
 
@@ -36,10 +34,7 @@ public class CintaTransportadora : MonoBehaviour {
         if(caja.CompareTag(TAG_BOX)) {
             Debug.Log("Empujamos la caja");
             Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
-            if(rb.rotation.Equals(new Vector3(rb.rotation.x, rb.rotation.y, 0))) {
-                rb.freezeRotation = true;
-            }
-            rb.velocity = new Vector3(force, 0, 0);
+            rb.velocity = transform.TransformDirection(Vector3.up) * force;
         }
     }
 }
