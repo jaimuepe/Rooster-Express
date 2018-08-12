@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
 
     bool detailView;
 
+    public float detailMovementSpeed;
     public float detailZoomSpeed;
 
     public float minDetailDistance;
@@ -46,7 +47,6 @@ public class PlayerController : MonoBehaviour
 
     public float mouseRotationSpeed;
 
-    // Use this for initialization
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -84,11 +84,62 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    float mouseScrollWheelDelta = Input.GetAxis("Mouse ScrollWheel");
-                    if (mouseScrollWheelDelta != 0.0f)
+                    if (Input.GetButton("Fire3"))
                     {
-                        detailDistance = Mathf.Clamp(detailDistance - mouseScrollWheelDelta * detailZoomSpeed, minDetailDistance, maxDetailDistance);
-                        detailCamera.orthographicSize = detailDistance;
+                        Vector3 displacement = detailCamera.transform.localPosition;
+
+                        Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+
+                        if (mouseDelta.x != 0.0f)
+                        {
+                            displacement -= mouseDelta.x * detailMovementSpeed * Vector3.right;
+                        }
+                        if (mouseDelta.y != 0.0f)
+                        {
+                            displacement -= mouseDelta.y * detailMovementSpeed * Vector3.up;
+                        }
+
+                        displacement.x = Mathf.Clamp(displacement.x, -1.0f, 1.0f);
+                        displacement.y = Mathf.Clamp(displacement.y, -1.0f, 1.0f);
+
+                        detailCamera.transform.localPosition = displacement;
+                    }
+                    else
+                    {
+                        float mouseScrollWheelDelta = Input.GetAxis("Mouse ScrollWheel");
+
+                        if (mouseScrollWheelDelta != 0.0f)
+                        {
+                            detailDistance = Mathf.Clamp(detailDistance + mouseScrollWheelDelta * detailZoomSpeed, minDetailDistance, maxDetailDistance);
+                            detailCamera.transform.localPosition =
+                                new Vector3(detailCamera.transform.localPosition.x,
+                                detailCamera.transform.localPosition.y,
+                                detailDistance);
+                        }
+
+                        float moveHorizontal = Input.GetAxis("Horizontal");
+                        float moveVertical = Input.GetAxis("Vertical");
+
+                        if (moveHorizontal != 0.0f || moveVertical != 0.0f)
+                        {
+                            Vector3 displacement = detailCamera.transform.localPosition;
+
+                            Vector2 movementDelta = new Vector2(moveHorizontal, moveVertical);
+
+                            if (movementDelta.x != 0.0f)
+                            {
+                                displacement += movementDelta.x * detailMovementSpeed * Vector3.right;
+                            }
+                            if (movementDelta.y != 0.0f)
+                            {
+                                displacement += movementDelta.y * detailMovementSpeed * Vector3.up;
+                            }
+
+                            displacement.x = Mathf.Clamp(displacement.x, -1.0f, 1.0f);
+                            displacement.y = Mathf.Clamp(displacement.y, -1.0f, 1.0f);
+
+                            detailCamera.transform.localPosition = displacement;
+                        }
                     }
                 }
             }
@@ -179,8 +230,8 @@ public class PlayerController : MonoBehaviour
 
     private void EnterDetailView()
     {
-        detailDistance = 1.0f;
-        detailCamera.orthographicSize = detailDistance;
+        detailDistance = -1.0f;
+        detailCamera.transform.localPosition = detailDistance * Vector3.forward;
 
         detailView = true;
         PostProcessComponent ppComponent = mainCamera.GetComponent<PostProcessComponent>();
@@ -195,7 +246,7 @@ public class PlayerController : MonoBehaviour
 
     private void ExitDetailView()
     {
-        detailDistance = 1.0f;
+        detailDistance = -1.0f;
 
         detailView = false;
         PostProcessComponent ppComponent = mainCamera.GetComponent<PostProcessComponent>();
