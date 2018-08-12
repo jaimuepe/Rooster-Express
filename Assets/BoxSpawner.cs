@@ -64,7 +64,6 @@ public class BoxSpawner : MonoBehaviour
             Material mat = decalMaterials[idx];
 
             float aspectRatio = (float)mat.mainTexture.height / mat.mainTexture.width;
-            Debug.Log(mat.mainTexture.name + ", " + aspectRatio);
 
             decalTransform.localScale = new Vector3(0.1f, 0.1f * aspectRatio, 3.0f);
             decalTransform.position -= new Vector3(0.0f, 0.0f, 1.5f);

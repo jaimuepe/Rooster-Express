@@ -2,8 +2,8 @@
     Properties {
         _MainTex ("Base (RGB)", 2D) = "white" {}
         _TextureColor ("Texture Color", Color) = (1, 1, 1, 1)
-        _ScrollXSpeed ("X Scroll Speed", Range(-5, 5)) = 0
-        _ScrollYSpeed ("Y Scroll Speed", Range(-5, 5)) = 0
+        _ScrollXSpeed ("X Scroll Speed", Range(-25, 25)) = 0
+        _ScrollYSpeed ("Y Scroll Speed", Range(-25, 25)) = 0
     }
     SubShader {
         Tags { "RenderType"="Opaque" }
