@@ -23,7 +23,7 @@ private void OnTriggerEnter(Collider other)
         if(other.gameObject.CompareTag("Caja")) {
             Destroy(other.gameObject);
             if(state.Equals(other.gameObject.GetComponent<Caja>().code)) {
-                gameManager.incrementPoints((float)System.Math.Round(other.GetComponent<Caja>().points, 2));
+                // gameManager.incrementPoints((float)System.Math.Round(other.GetComponent<Caja>().points, 2));
                 switch(state) {
                     case "A":
                         FindObjectOfType<LightsManager>().TurnGreen(0);
@@ -45,7 +45,7 @@ private void OnTriggerEnter(Collider other)
                 }
 
             } else {
-                gameManager.decrementPoints((float)System.Math.Round(other.GetComponent<Caja>().points, 2));
+                // gameManager.decrementPoints((float)System.Math.Round(other.GetComponent<Caja>().points, 2));
                 switch(state) {
                     case "A":
                         FindObjectOfType<LightsManager>().TurnRed(0);

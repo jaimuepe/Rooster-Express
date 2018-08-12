@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private Transform cameraTransform;
     private Rigidbody rb;
 
-    private GrabItems grabber;
+    public GrabItems grabber;
 
     public float speed;
     public float speedMultiplier;
@@ -47,10 +47,15 @@ public class PlayerController : MonoBehaviour
 
     public float mouseRotationSpeed;
 
+    Animator animator;
+
     void Start()
     {
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        animator = GetComponent<Animator>();
 
         mainCamera = Camera.main;
         deltaTimeForce = 0f;
@@ -59,7 +64,6 @@ public class PlayerController : MonoBehaviour
         cameraTransform = Camera.main.transform;
         rb = GetComponent<Rigidbody>();
         initialDrag = rb.drag;
-        grabber = GetComponentInChildren<GrabItems>();
 
         lastDirection = _transform.forward;
 
@@ -171,6 +175,8 @@ public class PlayerController : MonoBehaviour
                 grabber.TryPickUpBox();
             }
         }
+
+        animator.SetFloat("speed", rb.velocity.sqrMagnitude);
     }
 
     private void PlayerMovement()
