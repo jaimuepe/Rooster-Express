@@ -24,6 +24,10 @@ public class PlayerController : MonoBehaviour
 
     private float initialDrag;
 
+    public float minimumDrag;
+    public float dragDecrement;
+    public float dragIncrement;
+
     public float smoothDamp;
     Vector3 dampVelocity = Vector3.zero;
 
@@ -125,9 +129,9 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("La velocidad ha aumentado");
             localSpeed = speed * speedMultiplier;
-            if (rb.velocity.magnitude > 0.1f && rb.drag > 0.5f)
+            if (rb.velocity.magnitude > 0.1f && rb.drag > minimumDrag)
             {
-                rb.drag -= 0.1f;
+                rb.drag -= dragDecrement;
             }
         }
         else
@@ -135,7 +139,7 @@ public class PlayerController : MonoBehaviour
             localSpeed = speed;
             if (rb.drag < initialDrag)
             {
-                rb.drag += 0.3f;
+                rb.drag += dragIncrement;
             }
         }
         float moveHorizontal = Input.GetAxis("Horizontal");
