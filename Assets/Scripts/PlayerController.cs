@@ -28,10 +28,19 @@ public class PlayerController : MonoBehaviour
     Vector3 dampVelocity = Vector3.zero;
 
     public Transform detailCameraContainerTransform;
+    private Camera detailCamera;
 
     Camera mainCamera;
 
     bool detailView;
+
+    public float detailZoomSpeed;
+
+    public float minDetailDistance;
+    public float maxDetailDistance;
+    private float detailDistance;
+
+    public float mouseRotationSpeed;
 
     // Use this for initialization
     void Start()
@@ -47,6 +56,10 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         initialDrag = rb.drag;
         grabber = GetComponentInChildren<GrabItems>();
+
+        lastDirection = _transform.forward;
+
+        detailCamera = detailCameraContainerTransform.GetComponentInChildren<Camera>();
     }
 
     // Update is called once per frame
@@ -65,10 +78,20 @@ public class PlayerController : MonoBehaviour
                 {
                     ExitDetailView();
                 }
+                else
+                {
+                    float mouseScrollWheelDelta = Input.GetAxis("Mouse ScrollWheel");
+                    if (mouseScrollWheelDelta != 0.0f)
+                    {
+                        detailDistance = Mathf.Clamp(detailDistance - mouseScrollWheelDelta * detailZoomSpeed, minDetailDistance, maxDetailDistance);
+                        detailCamera.orthographicSize = detailDistance;
+                    }
+                }
             }
             else
             {
-                if(Input.GetButton("Fire1")) {
+                if (Input.GetButton("Fire1"))
+                {
                     deltaTimeForce += Time.deltaTime;
                 }
                 if (Input.GetButtonUp("Fire1"))
@@ -102,12 +125,16 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("La velocidad ha aumentado");
             localSpeed = speed * speedMultiplier;
-            if(rb.velocity.magnitude > 0.1f && rb.drag > 0.5f) {
+            if (rb.velocity.magnitude > 0.1f && rb.drag > 0.5f)
+            {
                 rb.drag -= 0.1f;
             }
-        } else {
+        }
+        else
+        {
             localSpeed = speed;
-            if(rb.drag < initialDrag) {
+            if (rb.drag < initialDrag)
+            {
                 rb.drag += 0.3f;
             }
         }
@@ -126,14 +153,33 @@ public class PlayerController : MonoBehaviour
 
         if (moveHorizontal != 0.0f || moveVertical != 0.0f)
         {
-            _transform.forward = Vector3.Slerp(_transform.forward, direction, smoothDamp);
+            lastDirection = direction;
         }
+        else
+        {
+            Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+
+            if (Mathf.Abs(mouseDelta.x) > .1f)
+            {
+                float deltaAngle = mouseDelta.x;
+
+                // TODO no queda bien, revisar
+                Vector3 lookVector = (mouseDelta.x * cameraRight + mouseDelta.y * fwd).normalized;
+                // lastDirection = Vector3.RotateTowards(lastDirection, lookVector, .5f, .5f);
+            }
+        }
+
+        _transform.forward = Vector3.Slerp(_transform.forward, lastDirection, smoothDamp);
     }
+
+    Vector3 lastDirection;
 
     private void EnterDetailView()
     {
-        detailView = true;
+        detailDistance = 1.0f;
+        detailCamera.orthographicSize = detailDistance;
 
+        detailView = true;
         PostProcessComponent ppComponent = mainCamera.GetComponent<PostProcessComponent>();
         ppComponent.EnableDepthOfField();
 
@@ -146,14 +192,14 @@ public class PlayerController : MonoBehaviour
 
     private void ExitDetailView()
     {
-        detailView = false;
+        detailDistance = 1.0f;
 
+        detailView = false;
         PostProcessComponent ppComponent = mainCamera.GetComponent<PostProcessComponent>();
         ppComponent.DisableDepthOfField();
 
         Transform boxT = grabber.BoxTransform;
         boxT.gameObject.SetLayerRecursively(LayerMask.NameToLayer("Boxes"));
-        boxT.gameObject.layer = 0;
 
         detailCameraContainerTransform.gameObject.SetActive(false);
         detailCameraContainerTransform.SetParent(null, false);
