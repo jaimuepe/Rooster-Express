@@ -21,8 +21,9 @@ public class DeliveryLogic : MonoBehaviour {
 private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Caja")) {
-            Destroy(other.gameObject);
-            if(state.Equals(other.gameObject.GetComponent<Caja>().code)) {
+            string objectCode = other.gameObject.GetComponent<Caja>().code;
+
+            if (state == objectCode) {
                 // gameManager.incrementPoints((float)System.Math.Round(other.GetComponent<Caja>().points, 2));
                 switch(state) {
                     case "A":
@@ -66,6 +67,7 @@ private void OnTriggerEnter(Collider other)
                         break;
                 }
             }
+            Destroy(other.gameObject);
         }
     }
 }

@@ -9,6 +9,8 @@ public class BoxSpawner : MonoBehaviour
     public float maxScale;
 
     public GameObject[] boxPrefabs;
+    public GameObject[] garbagePrefabs;
+
     private string[] codes;
 
     public Material[] randomDecals;
@@ -155,17 +157,28 @@ public class BoxSpawner : MonoBehaviour
     {
         for (int i = 0; i < ammoutOfBoxes; i++)
         {
-            GameObject box = Instantiate(boxPrefabs.GetRandomItem());
+            string code = codes[Random.Range(0, codes.Length)];
+
+            GameObject box;
+            if (code == "E")
+            {
+                box = Instantiate(garbagePrefabs.GetRandomItem());
+            }
+            else
+            {
+                box = Instantiate(boxPrefabs.GetRandomItem());
+            }
             Transform boxTransform = box.transform;
 
             boxTransform.position = transform.position + new Vector3(spawnArea.x, 0.0f, spawnArea.y);
-            float scale = Random.Range(minScale, maxScale);
+            float scale = 1.0f;
+            if (code != "E")
+            {
+                scale = Random.Range(minScale, maxScale);
+                boxTransform.localScale = scale * Vector3.one;
+                GenerateTags(box, code, Random.Range(minDecals, maxDecals));
+            }
 
-            boxTransform.localScale = scale * Vector3.one;
-
-            string code = codes[Random.Range(0, codes.Length - 1)];
-
-            GenerateTags(box, code, Random.Range(minDecals, maxDecals));
             box.gameObject.GetComponent<Rigidbody>().mass *= scale;
             box.GetComponent<Caja>().points *= scale;
             box.GetComponent<Caja>().code = code;
