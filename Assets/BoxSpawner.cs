@@ -9,6 +9,8 @@ public class BoxSpawner : MonoBehaviour
     public float maxScale;
 
     public GameObject[] boxPrefabs;
+    public GameObject[] garbagePrefabs;
+
     private string[] codes;
 
     public Material[] randomDecals;
@@ -27,7 +29,7 @@ public class BoxSpawner : MonoBehaviour
     public int ammountOfBoxes;
     public int ammountOfDecals;
 
-    private void Start()
+    private void Awake()
     {
         codes = new string[] { "A", "B", "C", "D", "E" };
     }
@@ -68,11 +70,33 @@ public class BoxSpawner : MonoBehaviour
 
         int districtIndex = GetDistrictIndex(districtCode);
 
-        Material districtDecal = districtDecals[districtIndex];
-        GenerateTag(baseObject, baseTransform, districtDecal, ref depth);
+        bool useBigDecal = Random.Range(0.0f, 1.0f) > 0.5f;
+        if (useBigDecal)
+        {
+            Material districtDecalBig = districtDecalsBig[districtIndex];
+            GenerateTag(baseObject, baseTransform, districtDecalBig, ref depth);
+        }
+        else
+        {
+            Material districtDecal = districtDecalsBigCrossed[AnotherRandomDistrict(districtIndex)];
+            GenerateTag(baseObject, baseTransform, districtDecal, ref depth);
+
+            Material districtDecalSmall = districtDecals[districtIndex];
+            GenerateTag(baseObject, baseTransform, districtDecalSmall, ref depth);
+        }
 
         Material colorDecal = colorDecals[districtIndex];
         GenerateTag(baseObject, baseTransform, colorDecal, ref depth);
+    }
+
+    int AnotherRandomDistrict(int distIndex)
+    {
+        List<int> indices = new List<int>()
+        {
+            0, 1, 2, 3
+        };
+        indices.Remove(distIndex);
+        return indices.GetRandomItem();
     }
 
     private void GenerateTag(GameObject baseObject, Transform baseTransform, Material decalMaterial, ref float depth)
@@ -133,17 +157,28 @@ public class BoxSpawner : MonoBehaviour
     {
         for (int i = 0; i < ammoutOfBoxes; i++)
         {
-            GameObject box = Instantiate(boxPrefabs.GetRandomItem());
+            string code = codes[Random.Range(0, codes.Length)];
+
+            GameObject box;
+            if (code == "E")
+            {
+                box = Instantiate(garbagePrefabs.GetRandomItem());
+            }
+            else
+            {
+                box = Instantiate(boxPrefabs.GetRandomItem());
+            }
             Transform boxTransform = box.transform;
 
             boxTransform.position = transform.position + new Vector3(spawnArea.x, 0.0f, spawnArea.y);
-            float scale = Random.Range(minScale, maxScale);
+            float scale = 1.0f;
+            if (code != "E")
+            {
+                scale = Random.Range(minScale, maxScale);
+                boxTransform.localScale = scale * Vector3.one;
+                GenerateTags(box, code, Random.Range(minDecals, maxDecals));
+            }
 
-            boxTransform.localScale = scale * Vector3.one;
-
-            string code = codes[Random.Range(0, codes.Length - 1)];
-
-            GenerateTags(box, code, Random.Range(minDecals, maxDecals));
             box.gameObject.GetComponent<Rigidbody>().mass *= scale;
             box.GetComponent<Caja>().points *= scale;
             box.GetComponent<Caja>().code = code;
