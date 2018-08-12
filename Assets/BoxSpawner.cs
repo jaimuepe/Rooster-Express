@@ -70,7 +70,8 @@ public class BoxSpawner : MonoBehaviour
 
         int districtIndex = GetDistrictIndex(districtCode);
 
-        bool useBigDecal = Random.Range(0.0f, 1.0f) > 0.5f;
+        bool useBigDecal = Random.value >= 0.5f;
+
         if (useBigDecal)
         {
             Material districtDecalBig = districtDecalsBig[districtIndex];

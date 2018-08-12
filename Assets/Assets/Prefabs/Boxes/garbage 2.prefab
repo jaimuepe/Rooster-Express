@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 54039394018539368}
   - component: {fileID: 114694038400516034}
   - component: {fileID: 135428067824362906}
+  - component: {fileID: 65002122266054348}
   m_Layer: 9
   m_Name: garbage 2
   m_TagString: Caja
@@ -101,6 +102,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65002122266054348
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1555461382345028}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.08478886, y: 0.08478875, z: 0.08478874}
+  m_Center: {x: 0.000000020489097, y: 0, z: 0.0000000037252903}
 --- !u!114 &114694038400516034
 MonoBehaviour:
   m_ObjectHideFlags: 1
