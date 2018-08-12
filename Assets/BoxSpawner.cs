@@ -10,6 +10,7 @@ public class BoxSpawner : MonoBehaviour
 
     public GameObject[] boxPrefabs;
     public Material[] decalMaterials;
+    private string[] codes;
 
     public Rect spawnArea;
 
@@ -18,6 +19,7 @@ public class BoxSpawner : MonoBehaviour
 
     private void Start()
     {
+        codes = new string[] { "A", "B", "C", "D", "E" };
         SpawnBoxes(ammountOfBoxes);
     }
 
@@ -92,6 +94,9 @@ public class BoxSpawner : MonoBehaviour
             boxTransform.localScale = scale * Vector3.one;
 
             GenerateTags(box, ammountOfDecals);
+            box.gameObject.GetComponent<Rigidbody>().mass *= scale;
+            box.GetComponent<Caja>().points *= scale;
+            box.GetComponent<Caja>().code = codes[Random.Range(0, 5)];
 
             yield return null;
         }

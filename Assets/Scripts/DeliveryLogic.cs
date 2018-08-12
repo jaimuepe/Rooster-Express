@@ -19,8 +19,8 @@ public class DeliveryLogic : MonoBehaviour {
 private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Caja")) {
-            other.gameObject.SetActive(false);
-            gameManager.incrementPoints(Random.Range(1,10));
+            Destroy(other.gameObject);
+            gameManager.incrementPoints((float)System.Math.Round(other.GetComponent<Caja>().points, 2));
         }
     }
 }
