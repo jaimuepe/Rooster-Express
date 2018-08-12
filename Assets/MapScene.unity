@@ -233,8 +233,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_Intensity: 1
-  m_Range: 10
+  m_Intensity: 3
+  m_Range: 3
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -768,8 +768,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_Intensity: 1
-  m_Range: 10
+  m_Intensity: 3
+  m_Range: 3
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -834,8 +834,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_Intensity: 1
-  m_Range: 10
+  m_Intensity: 3
+  m_Range: 3
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -1492,7 +1492,6 @@ GameObject:
   m_Component:
   - component: {fileID: 888918559}
   - component: {fileID: 888918562}
-  - component: {fileID: 888918561}
   m_Layer: 8
   m_Name: Detail camera
   m_TagString: Untagged
@@ -1513,13 +1512,6 @@ Transform:
   m_Father: {fileID: 1851919807}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &888918561
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 888918558}
-  m_Enabled: 1
 --- !u!20 &888918562
 Camera:
   m_ObjectHideFlags: 0
@@ -3323,11 +3315,13 @@ MonoBehaviour:
   pointLights:
   - {fileID: 1149996585}
   - {fileID: 1453850362}
-  treadmillLightA: {fileID: 584798025}
-  treadmillLightB: {fileID: 1966019023}
-  treadmillLightC: {fileID: 1959988638}
-  treadmillLightD: {fileID: 54334413}
-  treadmillLightShreder: {fileID: 567070103}
+  threadmillLights:
+  - {fileID: 584798025}
+  - {fileID: 1966019023}
+  - {fileID: 1959988638}
+  - {fileID: 54334413}
+  - {fileID: 567070103}
+  buzzerClip: {fileID: 8300000, guid: 1fe5e0c1e42531d468e6d86a370d832c, type: 3}
 --- !u!4 &1811224420
 Transform:
   m_ObjectHideFlags: 0
@@ -3541,8 +3535,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_Intensity: 1
-  m_Range: 10
+  m_Intensity: 3
+  m_Range: 3
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -3607,8 +3601,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_Intensity: 1
-  m_Range: 10
+  m_Intensity: 3
+  m_Range: 3
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
