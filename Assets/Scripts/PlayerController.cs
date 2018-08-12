@@ -127,7 +127,6 @@ public class PlayerController : MonoBehaviour
         float localSpeed;
         if (Input.GetButton("Fire3"))
         {
-            Debug.Log("La velocidad ha aumentado");
             localSpeed = speed * speedMultiplier;
             if (rb.velocity.magnitude > 0.1f && rb.drag > minimumDrag)
             {
@@ -169,7 +168,7 @@ public class PlayerController : MonoBehaviour
 
                 // TODO no queda bien, revisar
                 Vector3 lookVector = (mouseDelta.x * cameraRight + mouseDelta.y * fwd).normalized;
-                // lastDirection = Vector3.RotateTowards(lastDirection, lookVector, .5f, .5f);
+                lastDirection = Vector3.RotateTowards(lastDirection, lookVector, .1f, .1f);
             }
         }
 

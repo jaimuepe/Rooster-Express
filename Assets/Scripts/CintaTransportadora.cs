@@ -23,7 +23,6 @@ public class CintaTransportadora : MonoBehaviour {
         GameObject caja = other.gameObject;
         if (caja.CompareTag(TAG_BOX))
         {
-            Debug.Log("Empujamos la caja");
             Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
         }
     }
@@ -32,7 +31,6 @@ public class CintaTransportadora : MonoBehaviour {
     {
         GameObject caja = other.gameObject;
         if(caja.CompareTag(TAG_BOX)) {
-            Debug.Log("Empujamos la caja");
             Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
             rb.velocity = transform.TransformDirection(Vector3.up) * force;
         }

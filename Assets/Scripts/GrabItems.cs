@@ -54,7 +54,6 @@ public class GrabItems : MonoBehaviour
         boxTransform.GetComponent<Rigidbody>().AddForce((transform.TransformDirection(Vector3.up +Vector3.forward) * forceOfDrop), ForceMode.Impulse);
         boxTransform.GetComponent<Rigidbody>().AddTorque(transform.TransformDirection(Vector3.right) * forceOfDrop / 50f, ForceMode.Impulse);
         boxTransform = null;
-
     }
 
     private void PickUpBox(GameObject box)
