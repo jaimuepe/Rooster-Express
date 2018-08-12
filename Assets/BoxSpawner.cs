@@ -9,8 +9,18 @@ public class BoxSpawner : MonoBehaviour
     public float maxScale;
 
     public GameObject[] boxPrefabs;
-    public Material[] decalMaterials;
     private string[] codes;
+
+    public Material[] randomDecals;
+
+    public Material[] districtDecals;
+    public Material[] districtDecalsBig;
+    public Material[] districtDecalsBigCrossed;
+
+    public Material[] colorDecals;
+
+    public Material urgentDecal;
+    public Material fragileDecal;
 
     public Rect spawnArea;
 
@@ -40,49 +50,83 @@ public class BoxSpawner : MonoBehaviour
     public void SpawnBoxes(WaveInfo waveInfo)
     {
         int nBoxes = Random.Range(waveInfo.minNumberOfBoxes, waveInfo.maxNumberOfBoxes);
-        StartCoroutine(SpawnBoxesDelayed(nBoxes, minScale, maxScale, waveInfo.minNumberOfDecals, waveInfo.maxNumberOfDecals)); 
+        StartCoroutine(SpawnBoxesDelayed(nBoxes, minScale, maxScale, waveInfo.minNumberOfDecals, waveInfo.maxNumberOfDecals));
     }
 
-    public void GenerateTags(GameObject baseObject, int ammountOfTags)
+    void GenerateTags(GameObject baseObject, string districtCode, int ammountOfTags)
     {
         Transform baseTransform = baseObject.transform;
         float depth = 0.0001f;
 
         for (int i = 0; i < ammountOfTags; i++)
         {
-            GameObject decalContainer = new GameObject("DecalContainer_" + i)
-            {
-                layer = baseObject.layer
-            };
-            Transform decalContainerTransform = decalContainer.transform;
+            int idx = Random.Range(0, randomDecals.Length);
+            Material decalMaterial = randomDecals[idx];
 
-            decalContainerTransform.rotation = Random.rotation;
-            decalContainerTransform.SetParent(baseTransform, false);
-
-            GameObject decalObj = new GameObject("Decal")
-            {
-                layer = baseObject.layer
-            };
-            Transform decalTransform = decalObj.transform;
-
-            int idx = Random.Range(0, decalMaterials.Length);
-            Material mat = decalMaterials[idx];
-
-            float aspectRatio = (float)mat.mainTexture.height / mat.mainTexture.width;
-
-            decalTransform.localScale = new Vector3(0.1f, 0.1f * aspectRatio, 3.0f);
-            decalTransform.position -= new Vector3(0.0f, 0.0f, 1.5f);
-            decalTransform.SetParent(decalContainerTransform, false);
-
-            Decal decal = decalObj.AddComponent<Decal>();
-            decal.maxAngle = 60;
-            decal.pushDistance = depth;
-            decal.material = mat;
-
-            DecalBuilder.BuildAndSetDirty(decal, baseObject);
-
-            depth += 0.0001f;
+            GenerateTag(baseObject, baseTransform, decalMaterial, ref depth);
         }
+
+        int districtIndex = GetDistrictIndex(districtCode);
+
+        Material districtDecal = districtDecals[districtIndex];
+        GenerateTag(baseObject, baseTransform, districtDecal, ref depth);
+
+        Material colorDecal = colorDecals[districtIndex];
+        GenerateTag(baseObject, baseTransform, colorDecal, ref depth);
+    }
+
+    private void GenerateTag(GameObject baseObject, Transform baseTransform, Material decalMaterial, ref float depth)
+    {
+        GameObject decalContainer = new GameObject("DecalContainer")
+        {
+            layer = baseObject.layer
+        };
+        Transform decalContainerTransform = decalContainer.transform;
+
+        decalContainerTransform.rotation = Random.rotation;
+        decalContainerTransform.SetParent(baseTransform, false);
+
+        GameObject decalObj = new GameObject("Decal")
+        {
+            layer = baseObject.layer
+        };
+        Transform decalTransform = decalObj.transform;
+
+
+        float aspectRatio = (float)decalMaterial.mainTexture.height / decalMaterial.mainTexture.width;
+
+        decalTransform.localScale = new Vector3(0.1f, 0.1f * aspectRatio, 3.0f);
+        decalTransform.position -= new Vector3(0.0f, 0.0f, 1.5f);
+        decalTransform.SetParent(decalContainerTransform, false);
+
+        Decal decal = decalObj.AddComponent<Decal>();
+        decal.maxAngle = 60;
+        decal.pushDistance = depth;
+        decal.material = decalMaterial;
+
+        DecalBuilder.BuildAndSetDirty(decal, baseObject);
+        depth += 0.0001f;
+    }
+
+    int GetDistrictIndex(string districtCode)
+    {
+        if (districtCode == "A")
+        {
+            return 0;
+        }
+        else if (districtCode == "B")
+        {
+            return 1;
+        }
+        else if (districtCode == "C")
+        {
+            return 2;
+        }
+        else if (districtCode == "D")
+        {
+            return 3;
+        }
+        return 4;
     }
 
     IEnumerator SpawnBoxesDelayed(int ammoutOfBoxes, float minScale, float maxScale, int minDecals, int maxDecals)
@@ -97,10 +141,12 @@ public class BoxSpawner : MonoBehaviour
 
             boxTransform.localScale = scale * Vector3.one;
 
-            GenerateTags(box, Random.Range(minDecals, maxDecals));
+            string code = codes[Random.Range(0, codes.Length - 1)];
+
+            GenerateTags(box, code, Random.Range(minDecals, maxDecals));
             box.gameObject.GetComponent<Rigidbody>().mass *= scale;
             box.GetComponent<Caja>().points *= scale;
-            box.GetComponent<Caja>().code = codes[Random.Range(0, 5)];
+            box.GetComponent<Caja>().code = code;
 
             yield return null;
         }

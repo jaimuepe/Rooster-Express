@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -93,7 +94,7 @@ public class Coroutines
     /// <param name="image">image to be faded.</param>
     /// <param name="duration">Fade duration.</param>
     /// <returns>The resulting coroutine.</returns>
-    public static IEnumerator FadeAlpha01(Text text, float duration)
+    public static IEnumerator FadeAlpha01(TextMeshProUGUI text, float duration)
     {
         Color c = text.color;
         return FadeColor(text, duration, new Color(c.r, c.g, c.b, 0.0f), new Color(c.r, c.g, c.b, 1.0f));
@@ -111,7 +112,7 @@ public class Coroutines
         return FadeColor(image, duration, new Color(c.r, c.g, c.b, 1.0f), new Color(c.r, c.g, c.b, 0.0f));
     }
 
-    public static IEnumerator FadeAlpha10(Text text, float duration)
+    public static IEnumerator FadeAlpha10(TextMeshProUGUI text, float duration)
     {
         Color c = text.color;
         return FadeColor(text, duration, new Color(c.r, c.g, c.b, 1.0f), new Color(c.r, c.g, c.b, 0.0f));
@@ -179,7 +180,7 @@ public class Coroutines
         mat.SetColor(varName, c);
     }
 
-    public static IEnumerator FadeColor(Text text, float duration, Color startColor, Color endColor)
+    public static IEnumerator FadeColor(TextMeshProUGUI text, float duration, Color startColor, Color endColor)
     {
         if (duration > 0.0f)
         {
