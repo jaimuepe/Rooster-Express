@@ -38,8 +38,17 @@ public class GameManager : MonoBehaviour
 
     public Canvas gameCanvas;
 
-    [Range(0.0f, 1.0f)]
-    public float anger;
+    [Range(0.0f, 100f)]
+    [SerializeField]
+    private float _anger;
+
+    public float Anger
+    {
+        get
+        {
+            return Mathf.Clamp(boxesInScreen * angerIncreasePerBox + _anger, 0.0f, 100f);
+        }
+    }
 
     public float angerReductionDestroyGarbage;
     public float angerReductionDeliverPackage;
@@ -47,15 +56,25 @@ public class GameManager : MonoBehaviour
     public float angerIncreaseBurntPackage;
     public float angerIncreasePerBox;
     public float angerIncreaseFragileBoxHit;
-    public float angerDecay;
 
     public float angryBossThreshold;
     public float uncomfortableBossThreshold;
 
+    public AudioSource bgMusic;
+
     bool gameStarted = false;
+
+    public Image fadePanel;
+
+    int boxesInScreen = 0;
 
     void Start()
     {
+        fadePanel.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+
+        StartCoroutine(
+            Coroutines.FadeAlpha10(fadePanel, 1.0f));
+
         playerPoints = 0;
         canvas = FindObjectOfType<Canvas>();
         bossScreen = FindObjectOfType<BossScreen>();
@@ -64,8 +83,12 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-     if (!gameStarted) { return; }
-        anger -= angerDecay * Time.deltaTime;
+        if (!gameStarted) { return; }
+
+        if (boxesInScreen * angerIncreasePerBox + _anger >= 100.0f)
+        {
+            Debug.Break();
+        }
     }
 
     public void SuccessfulDelivery(bool destroyedGarbage)
@@ -91,19 +114,21 @@ public class GameManager : MonoBehaviour
 
         if (destroyedGarbage)
         {
-            anger -= angerReductionDestroyGarbage;
+            _anger -= angerReductionDestroyGarbage;
         }
         else
         {
-            anger -= angerReductionDeliverPackage;
+            _anger -= angerReductionDeliverPackage;
         }
 
         bossScreen.Relaxed();
+
+        boxesInScreen = Mathf.Max(0, boxesInScreen - 1);
     }
 
     public void OnBoxSpawned()
     {
-        anger += angerIncreasePerBox;
+        boxesInScreen++;
     }
 
     public void UnsucessfulDelivery(bool destroyedPackage)
@@ -129,14 +154,14 @@ public class GameManager : MonoBehaviour
 
         if (destroyedPackage)
         {
-            anger += angerIncreaseBurntPackage;
+            _anger += angerIncreaseBurntPackage;
         }
         else
         {
-            anger += angerIncreaseWrongDelivery;
+            _anger += angerIncreaseWrongDelivery;
         }
 
-        if (anger > angryBossThreshold)
+        if (Anger > angryBossThreshold)
         {
             bossScreen.Angry();
         }
@@ -144,6 +169,8 @@ public class GameManager : MonoBehaviour
         {
             bossScreen.What();
         }
+
+        boxesInScreen = Mathf.Max(0, boxesInScreen - 1);
     }
 
     public void StartGame()
@@ -159,6 +186,8 @@ public class GameManager : MonoBehaviour
 
         waveSpawner.gameObject.SetActive(true);
         gameCanvas.gameObject.SetActive(true);
+
+        bgMusic.Play();
 
         waveSpawner.BeginWaves();
         gameStarted = true;

@@ -29,12 +29,12 @@ public class AngerBar : MonoBehaviour
         if (chickenRectTransform == null) { chickenRectTransform = chicken.GetComponent<RectTransform>(); }
         if (gm == null) { gm = FindObjectOfType<GameManager>(); }
 #endif
-        rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, gm.anger * maxHeight);
-        if (gm.anger < gm.uncomfortableBossThreshold)
+        rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, gm.Anger * 0.01f * maxHeight);
+        if (gm.Anger < gm.uncomfortableBossThreshold)
         {
             chicken.sprite = chickenSprites[0];
         }
-        else if (gm.anger < gm.angryBossThreshold)
+        else if (gm.Anger < gm.angryBossThreshold)
         {
             chicken.sprite = chickenSprites[1];
         }
@@ -45,6 +45,6 @@ public class AngerBar : MonoBehaviour
 
         chickenRectTransform.anchoredPosition = new Vector2(
             chickenRectTransform.anchoredPosition.x,
-            rectTransform.anchoredPosition.y + gm.anger * maxHeight);
+            rectTransform.anchoredPosition.y + gm.Anger * 0.01f * maxHeight);
     }
 }

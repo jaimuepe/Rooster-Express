@@ -29,9 +29,16 @@ public class BoxSpawner : MonoBehaviour
     public int ammountOfBoxes;
     public int ammountOfDecals;
 
+    GameManager gm;
+
     private void Awake()
     {
         codes = new string[] { "A", "B", "C", "D", "E" };
+    }
+
+    private void Start()
+    {
+        gm = FindObjectOfType<GameManager>();
     }
 
 #if UNITY_EDITOR
@@ -222,7 +229,9 @@ public class BoxSpawner : MonoBehaviour
             bb.points *= scale;
             bb.code = code;
 
-            yield return null;
+            gm.OnBoxSpawned();
+
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
