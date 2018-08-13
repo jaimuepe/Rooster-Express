@@ -22,6 +22,27 @@ public class GameManager : MonoBehaviour
     public int itemsThrownCorrect;
     public int garbageCollected;
 
+    public Canvas statsCanvas;
+    public TextMeshProUGUI correctBoxesText;
+    public TextMeshProUGUI wrongBoxesText;
+    public TextMeshProUGUI burntBoxesText;
+    public TextMeshProUGUI fragileBoxesHitsText;
+    public TextMeshProUGUI maximumThrowDistanceText;
+    public TextMeshProUGUI itemsThrownText;
+    public TextMeshProUGUI itemsThrownCorrectText;
+    public TextMeshProUGUI garbageCollectedText;
+    public TextMeshProUGUI totalMoneyText;
+
+    private float totalMoney;
+
+    public float moneyCorrect;
+    public float moneyWrong;
+    public float moneyBurnt;
+    public float moneyFragileHits;
+    public float moneyThrowDistance;
+    public float moneyThrownCorrectly;
+    public float moneyGarbage;
+
     // TUTORIAL
     [Header("Debug")]
     public bool playerGrabbedFirstBox;
@@ -80,6 +101,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        totalMoney = 0;
         fadePanel.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
 
         StartCoroutine(
@@ -92,12 +114,18 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetKey(KeyCode.G)) {
+            statsCanvas.gameObject.SetActive(true);
+        } else {
+            statsCanvas.gameObject.SetActive(false);
+        }
+        UpdatePoints();
         if (!gameStarted) { return; }
 
         if (Anger > uncomfortableBossThreshold)
         {
             playerSweatParticleSystem.Play(true);
-        } 
+        }
         else
         {
             playerSweatParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
@@ -107,6 +135,24 @@ public class GameManager : MonoBehaviour
         {
             Debug.Break();
         }
+    }
+
+    private void UpdatePoints() {
+        correctBoxesText.text = "Correct boxes: " + correctBoxes + " (<color=\"green\">+$" + moneyCorrect * correctBoxes + "</color>)";
+        wrongBoxesText.text = "Wrong boxes: " + wrongBoxes + " (<color=\"red\">-$" + moneyWrong * wrongBoxes + "</color>)";
+        burntBoxesText.text = "Burnt boxes: " + burntBoxes + " (<color=\"red\">-$" + moneyBurnt * burntBoxes + "</color>)";
+        fragileBoxesHitsText.text = "Fragile items broken: " + fragileBoxesHits + " (<color=\"red\">-$" + moneyFragileHits * fragileBoxesHits + "</color>)";
+        maximumThrowDistanceText.text = "Maximum throw distance: " + System.Math.Round(maximumThrowDistance, 0) + "m (<color=\"green\">+$" 
+            + System.Math.Round(moneyThrowDistance * maximumThrowDistance, 0) + "</color>)";
+        itemsThrownText.text = "Items thrown: " + itemsThrown;
+        itemsThrownCorrectText.text = "Items thrown inside correct district: " + itemsThrownCorrect + " (<color=\"green\">+$" 
+            + moneyThrownCorrectly * itemsThrownCorrect + "</color>)";
+        garbageCollectedText.text = "Garbage collected: " + garbageCollected + " (<color=\"green\">+$" + moneyGarbage * garbageCollected + "</color>)";
+        totalMoney = (moneyCorrect * correctBoxes) - (moneyWrong * wrongBoxes) - (moneyBurnt * burntBoxes) 
+            - (moneyFragileHits * fragileBoxesHits) + (moneyThrowDistance * maximumThrowDistance) + (moneyThrownCorrectly * itemsThrownCorrect)
+            + (garbageCollected * moneyGarbage);
+        totalMoneyText.autoSizeTextContainer = true;
+        totalMoneyText.text = "YOUR SALARY: $" + System.Math.Round(totalMoney, 0);
     }
 
     public void SuccessfulDelivery(bool destroyedGarbage)
