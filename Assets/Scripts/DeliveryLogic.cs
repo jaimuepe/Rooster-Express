@@ -48,12 +48,15 @@ public class DeliveryLogic : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Caja"))
         {
-            string objectCode = other.gameObject.GetComponent<Caja>().code;
+            Caja caja = other.gameObject.GetComponent<Caja>();
 
-            if (state == objectCode)
+            if (state == caja.code)
             {
                 gameManager.SuccessfulDelivery();
-                gameManager.incrementPoints((float)System.Math.Round(other.GetComponent<Caja>().points, 2));
+                gameManager.incrementPoints(caja);
+                if(caja.boxWasThrown) {
+                    gameManager.boxesThrownCorrect += 1;
+                }
                 switch (state)
                 {
                     case "A":
@@ -79,7 +82,6 @@ public class DeliveryLogic : MonoBehaviour
             else
             {
                 gameManager.UnsucessfulDelivery(state == "E");
-                gameManager.decrementPoints((float)System.Math.Round(other.GetComponent<Caja>().points, 2));
                 switch (state)
                 {
                     case "A":
@@ -96,8 +98,10 @@ public class DeliveryLogic : MonoBehaviour
                         break;
                     case "E":
                         FindObjectOfType<LightsManager>().TurnRed(4);
+                        gameManager.burntBoxPoints(caja);
                         break;
                     default:
+                        gameManager.decrementPoints(caja);
                         break;
                 }
             }

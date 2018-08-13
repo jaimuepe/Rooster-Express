@@ -6,13 +6,20 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-
     private float playerPoints;
     private Transform _playerTransform;
     Canvas canvas;
 
     public Text pointsUI;
     public TextMeshProUGUI coinText;
+
+    public int correctBoxes;
+    public int wrongBoxes;
+    public int burntBoxes;
+    public int fragileBoxesHits;
+    public float maximumThrowDistance;
+    public int boxesThrown;
+    public int boxesThrownCorrect;
 
     // TUTORIAL
     [Header("Debug")]
@@ -36,6 +43,8 @@ public class GameManager : MonoBehaviour
 
     BossScreen bossScreen;
 
+    TextFollows textFollows;
+
 
     void Start()
     {
@@ -43,13 +52,7 @@ public class GameManager : MonoBehaviour
         canvas = FindObjectOfType<Canvas>();
         bossScreen = FindObjectOfType<BossScreen>();
         deliveries = FindObjectsOfType<DeliveryLogic>();
-        _playerTransform = GameObject.FindWithTag("Player").transform;
-    }
-
-    private void Update()
-    {
-        coinText.transform.localEulerAngles = new Vector3(0, Camera.main.transform.eulerAngles.y, 0);
-        coinText.transform.position = new Vector3(_playerTransform.position.x, _playerTransform.position.y + 1.3f, _playerTransform.position.z);
+        textFollows = FindObjectOfType<TextFollows>();
     }
 
     public void SuccessfulDelivery()
@@ -128,25 +131,28 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void incrementPoints(float points)
+    public void incrementPoints(Caja caja)
     {
         this.playerPoints += 1;
-        showCoinText("+2 coins");
+        textFollows.showMessage(textFollows.NORMAL_TEXT, textFollows.COLOR_GREEN);
         //pointsUI.text = "Points: " + playerPoints.ToString();
         Debug.Log("Caja correcta");
+        correctBoxes += 1;
     }
 
-    public void decrementPoints(float points)
+    public void decrementPoints(Caja caja)
     {
         this.playerPoints -= 1;
+        textFollows.showMessage(textFollows.WRONG_TEXT, textFollows.COLOR_RED);
         //pointsUI.text = "Points: " + playerPoints.ToString();
         Debug.Log("Caja incorrecta");
+        wrongBoxes += 1;
     }
 
-
-    private void showCoinText(string text) {
-        coinText.text = text;
-        coinText.autoSizeTextContainer = true;
+    public void burntBoxPoints(Caja caja) {
+        this.playerPoints -= 5;
+        textFollows.showMessage(textFollows.BURNT_TEXT, textFollows.COLOR_RED);
+        burntBoxes += 1;
     }
 
 }

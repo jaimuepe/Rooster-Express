@@ -126,3 +126,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 3.5
   code: 
+  maxValueForHit: 1
+  positionThrow: {x: 0, y: 0, z: 0}
+  speedCollision: 0
+  maxSpeedCollision: 0
+  pickedUpFor1stTime: 0
