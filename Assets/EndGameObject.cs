@@ -55,8 +55,8 @@ public class EndGameObject : MonoBehaviour
                     Coroutines.Wrap(() => spawner.SpawnBoxes(500, 0.01f)),
                     DisplayText("You think you are good at your job? Let's see how you handle THIS...", 4.0f)),
                Coroutines.Wait(2.0f),
-               DisplayText("... Oh, wait, your turn is over. Don't worry, someone else will pick this up. See you tomorrow...", 5.0f),
-               Coroutines.Wait(2.0f),
+               DisplayText("... Oh, wait, your turn is over. Don't worry, someone else will pick this up. See you tomorrow...", 6.0f),
+               Coroutines.Wait(1.0f),
                Coroutines.Wrap(() => statisticsCanvas.gameObject.SetActive(true)));
     }
 
@@ -65,7 +65,7 @@ public class EndGameObject : MonoBehaviour
         return Coroutines.Chain(
             Coroutines.Wait(2.0f),
             DisplayText("Well... that was a disaster. You are fired.", 4.0f),
-            Coroutines.Wait(4.0f),
+            Coroutines.Wait(1.0f),
             Coroutines.Wrap(() => statisticsCanvas.gameObject.SetActive(true)));
     }
 
