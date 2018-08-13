@@ -58,14 +58,11 @@ public class DeliveryLogic : MonoBehaviour
 
             if (state == caja.code)
             {
-                gameManager.SuccessfulDelivery();
-                gameManager.incrementPoints(caja);
                 if(caja.boxWasThrown) {
-                    gameManager.boxesThrownCorrect += 1;
+                    gameManager.itemsThrownCorrect += 1;
                 }
-                gameManager.SuccessfulDelivery(objectCode == "E");
+                gameManager.SuccessfulDelivery(caja.code == "E");
                 FindObjectOfType<LightsManager>().TurnGreen(screenLight);
-                gameManager.incrementPoints((float)System.Math.Round(other.GetComponent<Caja>().points, 2));
                 
                 switch (state)
                 {
@@ -92,7 +89,6 @@ public class DeliveryLogic : MonoBehaviour
             {
                 gameManager.UnsucessfulDelivery(state == "E");
                 FindObjectOfType<LightsManager>().TurnRed(screenLight);
-                gameManager.decrementPoints((float)System.Math.Round(other.GetComponent<Caja>().points, 2));
                 
                 switch (state)
                 {
@@ -109,12 +105,9 @@ public class DeliveryLogic : MonoBehaviour
                         FindObjectOfType<LightsManager>().TurnRed(screenLight);
                         break;
                     case "E":
-                        FindObjectOfType<LightsManager>().TurnRed(4);
-                        gameManager.burntBoxPoints(caja);
                         FindObjectOfType<LightsManager>().TurnRed(screenLight);
                         break;
                     default:
-                        gameManager.decrementPoints(caja);
                         break;
                 }
             }

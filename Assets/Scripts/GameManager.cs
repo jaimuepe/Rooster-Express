@@ -7,7 +7,6 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
 
-    private float playerPoints;
     private Transform _playerTransform;
     Canvas canvas;
 
@@ -19,8 +18,9 @@ public class GameManager : MonoBehaviour
     public int burntBoxes;
     public int fragileBoxesHits;
     public float maximumThrowDistance;
-    public int boxesThrown;
-    public int boxesThrownCorrect;
+    public int itemsThrown;
+    public int itemsThrownCorrect;
+    public int garbageCollected;
 
     // TUTORIAL
     [Header("Debug")]
@@ -43,8 +43,6 @@ public class GameManager : MonoBehaviour
     public DeliveryLogic[] deliveriesWithoutGarbage;
 
     BossScreen bossScreen;
-
-    TextFollows textFollows;
     
     public Canvas gameCanvas;
 
@@ -66,10 +64,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        playerPoints = 0;
         canvas = FindObjectOfType<Canvas>();
         bossScreen = FindObjectOfType<BossScreen>();
-        textFollows = FindObjectOfType<TextFollows>();
         _playerTransform = GameObject.FindWithTag("Player").transform;
     }
 
@@ -103,10 +99,12 @@ public class GameManager : MonoBehaviour
         if (destroyedGarbage)
         {
             anger -= angerReductionDestroyGarbage;
+            recollectedGarbage();
         }
         else
         {
             anger -= angerReductionDeliverPackage;
+            incrementPoints();
         }
 
         bossScreen.Relaxed();
@@ -141,10 +139,12 @@ public class GameManager : MonoBehaviour
         if (destroyedPackage)
         {
             anger += angerIncreaseBurntPackage;
+            burntBoxPoints();
         }
         else
         {
             anger += angerIncreaseWrongDelivery;
+            decrementPoints();
         }
 
         if (anger > angryBossThreshold)
@@ -186,34 +186,24 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void incrementPoints(Caja caja)
+    public void incrementPoints()
     {
-        this.playerPoints += 1;
-        textFollows.showMessage(textFollows.NORMAL_TEXT, textFollows.COLOR_GREEN);
-        //pointsUI.text = "Points: " + playerPoints.ToString();
         Debug.Log("Caja correcta");
         correctBoxes += 1;
     }
 
-    public void decrementPoints(Caja caja)
+    public void decrementPoints()
     {
-        this.playerPoints -= 1;
-        textFollows.showMessage(textFollows.WRONG_TEXT, textFollows.COLOR_RED);
-        //pointsUI.text = "Points: " + playerPoints.ToString();
         Debug.Log("Caja incorrecta");
         wrongBoxes += 1;
     }
 
-    public void burntBoxPoints(Caja caja) {
-        this.playerPoints -= 5;
-        textFollows.showMessage(textFollows.BURNT_TEXT, textFollows.COLOR_RED);
+    public void burntBoxPoints() {
         burntBoxes += 1;
     }
 
-    private void showCoinText(string text)
-    {
-        coinText.text = text;
-        coinText.autoSizeTextContainer = true;
+    public void recollectedGarbage() {
+        garbageCollected += 1;
     }
 
 }

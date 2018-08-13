@@ -18,13 +18,10 @@ public class Caja : MonoBehaviour
     public bool boxWasThrown;
     public bool pickedUpFor1stTime;
 
-    TextFollows textFollows;
-
     GameManager gameManager;
 
 	// Use this for initialization
 	void Start () {
-        textFollows = FindObjectOfType<TextFollows>();
         gameManager = FindObjectOfType<GameManager>();
 	}
 
@@ -37,8 +34,7 @@ public class Caja : MonoBehaviour
             {
                 maxSpeedCollision = speedCollision;
             }
-            if(speedCollision > maxValueForHit) {
-                textFollows.showMessage(textFollows.HIT_TEXT, textFollows.COLOR_RED);
+            if(fragile && speedCollision > maxValueForHit) {
                 gameManager.fragileBoxesHits += 1;
             }
             float distance = Vector3.Distance(positionThrow, transform.position);
@@ -50,11 +46,13 @@ public class Caja : MonoBehaviour
                 gameManager.maximumThrowDistance = maxDistanceDone;
             }
             if(distance > defaultThrowDistance) {
-                gameManager.boxesThrown += 1;
+                gameManager.itemsThrown += 1;
                 boxWasThrown = true;
             } else {
                 boxWasThrown = false;
             }
+            distance = 0;
         }
+        pickedUpFor1stTime = false;
     }
 }
