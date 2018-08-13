@@ -1185,8 +1185,8 @@ MonoBehaviour:
   burntBoxes: 0
   fragileBoxesHits: 0
   maximumThrowDistance: 0
-  boxesThrown: 0
-  boxesThrownCorrect: 0
+  itemsThrown: 0
+  itemsThrownCorrect: 0
   garbageCollected: 0
   playerGrabbedFirstBox: 0
   playerInspectedFirstBox: 0
@@ -6870,6 +6870,11 @@ Prefab:
       propertyPath: detailCameraContainerTransform
       value: 
       objectReference: {fileID: 1851919807}
+    - target: {fileID: 54330958439196818, guid: c348c000f8796fb4faa3110b483d9f55,
+        type: 2}
+      propertyPath: m_Mass
+      value: 40
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c348c000f8796fb4faa3110b483d9f55, type: 2}
   m_IsPrefabAsset: 0
