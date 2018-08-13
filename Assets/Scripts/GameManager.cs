@@ -142,10 +142,10 @@ public class GameManager : MonoBehaviour
         wrongBoxesText.text = "Wrong boxes: " + wrongBoxes + " (<color=\"red\">-$" + moneyWrong * wrongBoxes + "</color>)";
         burntBoxesText.text = "Burnt boxes: " + burntBoxes + " (<color=\"red\">-$" + moneyBurnt * burntBoxes + "</color>)";
         fragileBoxesHitsText.text = "Fragile items broken: " + fragileBoxesHits + " (<color=\"red\">-$" + moneyFragileHits * fragileBoxesHits + "</color>)";
-        maximumThrowDistanceText.text = "Maximum throw distance: " + System.Math.Round(maximumThrowDistance, 0) + "m (<color=\"green\">+$" 
+        maximumThrowDistanceText.text = "Max. throw distance: " + System.Math.Round(maximumThrowDistance, 0) + "m (<color=\"green\">+$" 
             + System.Math.Round(moneyThrowDistance * maximumThrowDistance, 0) + "</color>)";
         itemsThrownText.text = "Items thrown: " + itemsThrown;
-        itemsThrownCorrectText.text = "Items thrown inside correct district: " + itemsThrownCorrect + " (<color=\"green\">+$" 
+        itemsThrownCorrectText.text = "Items thrown correctly: " + itemsThrownCorrect + " (<color=\"green\">+$" 
             + moneyThrownCorrectly * itemsThrownCorrect + "</color>)";
         garbageCollectedText.text = "Garbage collected: " + garbageCollected + " (<color=\"green\">+$" + moneyGarbage * garbageCollected + "</color>)";
         totalMoney = (moneyCorrect * correctBoxes) - (moneyWrong * wrongBoxes) - (moneyBurnt * burntBoxes) 
