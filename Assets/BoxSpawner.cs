@@ -49,6 +49,7 @@ public class BoxSpawner : MonoBehaviour
             SpawnBoxes(ammountOfBoxes, 0.1f);
         }
     }
+#endif    
 
     public void SpawnBoxes(int ammountOfBoxes, float timeBetweenSpawns)
     {
@@ -62,7 +63,6 @@ public class BoxSpawner : MonoBehaviour
 
         StartCoroutine(SpawnBoxesDelayed(waveInfo, timeBetweenSpawns));
     }
-#endif    
 
     public void SpawnBoxes(WaveInfo waveInfo)
     {
