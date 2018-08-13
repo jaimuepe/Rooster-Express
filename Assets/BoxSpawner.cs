@@ -46,11 +46,11 @@ public class BoxSpawner : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            SpawnBoxes(ammountOfBoxes);
+            SpawnBoxes(ammountOfBoxes, 0.1f);
         }
     }
 
-    public void SpawnBoxes(int ammountOfBoxes)
+    public void SpawnBoxes(int ammountOfBoxes, float timeBetweenSpawns)
     {
         WaveInfo waveInfo = new WaveInfo
         {
@@ -60,7 +60,7 @@ public class BoxSpawner : MonoBehaviour
             maxNumberOfDecals = ammountOfDecals + 1
         };
 
-        StartCoroutine(SpawnBoxesDelayed(waveInfo));
+        StartCoroutine(SpawnBoxesDelayed(waveInfo, timeBetweenSpawns));
     }
 #endif    
 
@@ -177,7 +177,7 @@ public class BoxSpawner : MonoBehaviour
         return 4;
     }
 
-    IEnumerator SpawnBoxesDelayed(WaveInfo waveInfo)
+    IEnumerator SpawnBoxesDelayed(WaveInfo waveInfo, float timeBetweenSpawns = -1.0f)
     {
         int ammountOfBoxes = Random.Range(waveInfo.minNumberOfBoxes, waveInfo.maxNumberOfBoxes);
 
@@ -230,7 +230,14 @@ public class BoxSpawner : MonoBehaviour
 
             gm.OnBoxSpawned();
 
-            yield return new WaitForSeconds(0.1f);
+            if (timeBetweenSpawns > 0.0f)
+            {
+                yield return new WaitForSeconds(timeBetweenSpawns);
+            }
+            else
+            {
+                yield return new WaitForSeconds(0.1f);
+            }
         }
     }
 

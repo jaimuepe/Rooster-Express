@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 65746548746298350}
   - component: {fileID: 54039394018539368}
   - component: {fileID: 114694038400516034}
+  - component: {fileID: 114669088872049488}
   m_Layer: 9
   m_Name: Caja (4)
   m_TagString: Caja
@@ -113,6 +114,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.3271778, y: 0.3185672, z: 0.29564178}
   m_Center: {x: 0.000000029802322, y: 0, z: 0}
+--- !u!114 &114669088872049488
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1555461382345028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53f4bfdae6bd553448b56f6b29ccaec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 0}
+  grabber: {fileID: 0}
+  waveSystem: {fileID: 0}
+  spawner: {fileID: 0}
+  gm: {fileID: 0}
+  endGameCanvas: {fileID: 0}
+  bossScreen: {fileID: 0}
 --- !u!114 &114694038400516034
 MonoBehaviour:
   m_ObjectHideFlags: 1

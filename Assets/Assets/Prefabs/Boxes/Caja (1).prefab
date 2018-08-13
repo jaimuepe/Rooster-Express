@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 65738570957606862}
   - component: {fileID: 54320075417580628}
   - component: {fileID: 114503205348350950}
+  - component: {fileID: 114724190093790314}
   m_Layer: 9
   m_Name: Caja (1)
   m_TagString: Caja
@@ -141,3 +142,21 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0c3f8430f124f564388e6c66d6f67dda, type: 3}
   - {fileID: 8300000, guid: 34535d2feb95ccb40a46e2dcba789499, type: 3}
   - {fileID: 8300000, guid: 3e65be83a22c8d8439c594eecd617335, type: 3}
+--- !u!114 &114724190093790314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1083713824605916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53f4bfdae6bd553448b56f6b29ccaec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 0}
+  grabber: {fileID: 0}
+  waveSystem: {fileID: 0}
+  spawner: {fileID: 0}
+  gm: {fileID: 0}
+  endGameCanvas: {fileID: 0}
+  bossScreen: {fileID: 0}

@@ -57,6 +57,8 @@ public class GrabItems : MonoBehaviour
 
     public void DropBox(float forceOfDrop, Vector3 throwPosition)
     {
+        if (!boxTransform) { return; }
+
         boxTransform.gameObject.GetComponent<Caja>().positionThrow = throwPosition;
         boxTransform.GetComponent<Rigidbody>().isKinematic = false;
         boxTransform.GetComponent<Rigidbody>().AddForce((transform.TransformDirection(Vector3.up + Vector3.forward) * forceOfDrop), ForceMode.Impulse);

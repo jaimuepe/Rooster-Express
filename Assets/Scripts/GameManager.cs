@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float _anger;
 
+    public EndGameObject endGame;
+
     public float Anger
     {
         get
@@ -92,7 +94,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (!gameStarted) { return; }
+        if (!gameStarted || endGame.gameEnded) { return; }
 
         if (Anger > uncomfortableBossThreshold)
         {
@@ -105,9 +107,12 @@ public class GameManager : MonoBehaviour
 
         if (boxesInScreen * angerIncreasePerBox + _anger >= 100.0f)
         {
-            Debug.Break();
+            playerWon = false;
+            endGame.EndGame();
         }
     }
+
+    public bool playerWon = false;
 
     public void SuccessfulDelivery(bool destroyedGarbage)
     {

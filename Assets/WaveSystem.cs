@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaveSystem : MonoBehaviour
 {
@@ -35,9 +37,13 @@ public class WaveSystem : MonoBehaviour
         Debug.Log("Starting wave spawn...");
     }
 
+    public EndGameObject endGame;
+
+    public TextMeshProUGUI timerText;
+
     private void Update()
     {
-        if (!started) { return; }
+        if (!started || endGame.gameEnded) { return; }
 
         int wave = (int)Math.Floor(wavesCurve.Evaluate(totalTime));
         if (wave != lastWave)
@@ -54,10 +60,24 @@ public class WaveSystem : MonoBehaviour
         }
         totalTime += Time.deltaTime;
 
-        if (totalTime >=totalGameTime)
+        int remaining = (int)(totalGameTime - totalTime);
+
+        string remainingH = (remaining / 60).ToString();
+        string remainingM = (remaining % 60).ToString();
+
+        if (remainingM.Length < 2) { remainingM = "0" + remainingM; }
+
+        timerText.text = "0" + remainingH + ":" + remainingM;
+
+        if (remaining < 30)
         {
-            Debug.Log("You win!");
-            Debug.Break();
+            timerText.text = "<color=\"yellow\">" + "0" + remainingH + ":" + remainingM + "</color>";
+        }
+
+        if (totalTime >= totalGameTime)
+        {
+            gm.playerWon = true;
+            endGame.EndGame();
         }
     }
 

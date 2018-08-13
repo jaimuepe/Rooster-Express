@@ -9,48 +9,50 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1948489031506576}
+  m_RootGameObject: {fileID: 1302763884048362}
   m_IsPrefabAsset: 1
---- !u!1 &1948489031506576
+--- !u!1 &1302763884048362
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4595926599660948}
-  - component: {fileID: 33713428644457760}
-  - component: {fileID: 23144523977273132}
-  - component: {fileID: 65525745587441496}
-  - component: {fileID: 54847511789523812}
-  - component: {fileID: 114710871443373912}
-  - component: {fileID: 114168614033484486}
+  - component: {fileID: 4368061249802564}
+  - component: {fileID: 33098806668242930}
+  - component: {fileID: 23291314308098076}
+  - component: {fileID: 65007269873510382}
+  - component: {fileID: 114186561352659936}
+  - component: {fileID: 54383483343384172}
+  - component: {fileID: 65748579543016578}
+  - component: {fileID: 54268470533666414}
+  - component: {fileID: 114873667102147672}
   m_Layer: 9
-  m_Name: Caja (3)
+  m_Name: garbage 6
   m_TagString: Caja
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4595926599660948
+--- !u!4 &4368061249802564
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1948489031506576}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 1302763884048362}
+  m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: 2.9542227, y: 0.1920251, z: -0.95095545}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23144523977273132
+  m_LocalEulerAnglesHint: {x: -90.00001, y: -90, z: 0}
+--- !u!23 &23291314308098076
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1948489031506576}
+  m_GameObject: {fileID: 1302763884048362}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -60,7 +62,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 75bd0f2fac46f614084889fe5ccbfd0c, type: 2}
+  - {fileID: 2100000, guid: 5875587c36344884298710ecff42cc4b, type: 2}
+  - {fileID: 2100000, guid: 451bd8ee6bbe61048a679ab0e02eb726, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -80,21 +83,21 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33713428644457760
+--- !u!33 &33098806668242930
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1948489031506576}
-  m_Mesh: {fileID: 4300000, guid: ecc9f7a46f0929b4496867f85b2bc2bc, type: 3}
---- !u!54 &54847511789523812
+  m_GameObject: {fileID: 1302763884048362}
+  m_Mesh: {fileID: 4300000, guid: 28077d893d1bc934fb5384de909ba8ee, type: 3}
+--- !u!54 &54383483343384172
 Rigidbody:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1948489031506576}
+  m_GameObject: {fileID: 1302763884048362}
   serializedVersion: 2
-  m_Mass: 5.5
+  m_Mass: 5
   m_Drag: 1
   m_AngularDrag: 0
   m_UseGravity: 1
@@ -102,61 +105,88 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65525745587441496
+--- !u!65 &65007269873510382
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1948489031506576}
+  m_GameObject: {fileID: 1302763884048362}
   m_Material: {fileID: 13400000, guid: acdc1b5e3ebd1774eb878e015744ee76, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.7822574, y: 0.515758, z: 0.3745541}
-  m_Center: {x: 0, y: -0.000000029802322, z: -0.000000007450581}
---- !u!114 &114168614033484486
+  m_Size: {x: 0.7407599, y: 0.85277903, z: 0.38404998}
+  m_Center: {x: -0.0049484074, y: -0.010359379, z: 0}
+--- !u!114 &114186561352659936
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1948489031506576}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53f4bfdae6bd553448b56f6b29ccaec9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 0}
-  grabber: {fileID: 0}
-  waveSystem: {fileID: 0}
-  spawner: {fileID: 0}
-  gm: {fileID: 0}
-  endGameCanvas: {fileID: 0}
-  bossScreen: {fileID: 0}
---- !u!114 &114710871443373912
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1948489031506576}
+  m_GameObject: {fileID: 1302763884048362}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 857b148a300604c9ea500ac202e63527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fragile: 0
-  points: 3.5
+  points: 0
   code: 
-  maxValueForHit: 0.5
+  maxValueForHit: 0
   positionThrow: {x: 0, y: 0, z: 0}
   maxDistanceDone: 0
   speedCollision: 0
   maxSpeedCollision: 0
-  defaultThrowDistance: 2
+  defaultThrowDistance: 0
   boxWasThrown: 0
   pickedUp: 0
-  brokenGlassClip:
-  - {fileID: 8300000, guid: c5bd0678c9b4e5d4e8da6f3fbab28c63, type: 3}
-  - {fileID: 8300000, guid: 12270f9038b8e324ba2dbe9cb25a9140, type: 3}
-  - {fileID: 8300000, guid: 0c3f8430f124f564388e6c66d6f67dda, type: 3}
-  - {fileID: 8300000, guid: 34535d2feb95ccb40a46e2dcba789499, type: 3}
-  - {fileID: 8300000, guid: 3e65be83a22c8d8439c594eecd617335, type: 3}
+  brokenGlassClip: []
+--- !u!54 &54268470533666414
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1302763884048362}
+  serializedVersion: 2
+  m_Mass: 5
+  m_Drag: 1
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &65748579543016578
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1302763884048362}
+  m_Material: {fileID: 13400000, guid: acdc1b5e3ebd1774eb878e015744ee76, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8534733, y: 0.25840855, z: 0.67507005}
+  m_Center: {x: 0.000000029802322, y: 0.000000007450581, z: 0}
+--- !u!114 &114873667102147672
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1302763884048362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 857b148a300604c9ea500ac202e63527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fragile: 0
+  points: 2.5
+  code: 
+  maxValueForHit: 0
+  positionThrow: {x: 0, y: 0, z: 0}
+  maxDistanceDone: 0
+  speedCollision: 0
+  maxSpeedCollision: 0
+  defaultThrowDistance: 0
+  boxWasThrown: 0
+  pickedUp: 0
+  brokenGlassClip: []

@@ -296,8 +296,10 @@ public class PlayerController : MonoBehaviour
         detailCameraContainerTransform.SetParent(boxT, false);
     }
 
-    private void ExitDetailView()
+    public void ExitDetailView()
     {
+        if (!grabber.CarryingItem) { return; }
+
         detailDistance = -1.0f;
 
         detailView = false;
