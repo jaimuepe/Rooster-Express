@@ -65,19 +65,19 @@ public class DeliveryLogic : MonoBehaviour
                 switch (state)
                 {
                     case "A":
-                        FindObjectOfType<LightsManager>().TurnGreen(0);
+                        FindObjectOfType<LightsManager>().TurnGreen(screenLight);
                         break;
                     case "B":
-                        FindObjectOfType<LightsManager>().TurnGreen(1);
+                        FindObjectOfType<LightsManager>().TurnGreen(screenLight);
                         break;
                     case "C":
-                        FindObjectOfType<LightsManager>().TurnGreen(2);
+                        FindObjectOfType<LightsManager>().TurnGreen(screenLight);
                         break;
                     case "D":
-                        FindObjectOfType<LightsManager>().TurnGreen(3);
+                        FindObjectOfType<LightsManager>().TurnGreen(screenLight);
                         break;
                     case "E":
-                        FindObjectOfType<LightsManager>().TurnGreen(4);
+                        FindObjectOfType<LightsManager>().TurnGreen(screenLight);
                         break;
                     default:
                         break;
@@ -92,19 +92,19 @@ public class DeliveryLogic : MonoBehaviour
                 switch (state)
                 {
                     case "A":
-                        FindObjectOfType<LightsManager>().TurnRed(0);
+                        FindObjectOfType<LightsManager>().TurnRed(screenLight);
                         break;
                     case "B":
-                        FindObjectOfType<LightsManager>().TurnRed(1);
+                        FindObjectOfType<LightsManager>().TurnRed(screenLight);
                         break;
                     case "C":
-                        FindObjectOfType<LightsManager>().TurnRed(2);
+                        FindObjectOfType<LightsManager>().TurnRed(screenLight);
                         break;
                     case "D":
-                        FindObjectOfType<LightsManager>().TurnRed(3);
+                        FindObjectOfType<LightsManager>().TurnRed(screenLight);
                         break;
                     case "E":
-                        FindObjectOfType<LightsManager>().TurnRed(4);
+                        FindObjectOfType<LightsManager>().TurnRed(screenLight);
                         break;
                     default:
                         break;
