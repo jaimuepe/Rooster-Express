@@ -6502,6 +6502,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1931439709}
+  - {fileID: 1499938424}
   m_Father: {fileID: 0}
   m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8552,6 +8553,75 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 32edf7eb05fdfb24c97154f05fc7a39b,
     type: 3}
   m_PrefabInternal: {fileID: 1512882383}
+--- !u!1 &1499938423
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1499938424}
+  - component: {fileID: 1499938426}
+  - component: {fileID: 1499938425}
+  m_Layer: 5
+  m_Name: Chicken
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1499938424
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1499938423}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 748917374}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -720.66, y: 40}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1499938425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1499938423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: bbda9574c9ad20e4ba05980a4a68e81e, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1499938426
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1499938423}
+  m_CullTransparentMesh: 0
 --- !u!1001 &1512882383
 Prefab:
   m_ObjectHideFlags: 0
@@ -9525,11 +9595,11 @@ RectTransform:
   m_Father: {fileID: 748917374}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 100, y: 0}
-  m_SizeDelta: {x: 100, y: 1000}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 100, y: 40}
+  m_SizeDelta: {x: 100, y: 0}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1931439710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9575,9 +9645,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20b060301ef345e48957c36ed544e5c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chickenImages: []
-  concernedChickenValue: 0
-  angryChickenValue: 0
+  chicken: {fileID: 1499938425}
+  chickenSprites:
+  - {fileID: 21300000, guid: bbda9574c9ad20e4ba05980a4a68e81e, type: 3}
+  - {fileID: 21300000, guid: a128b1c5085e6ed45a40a13efa5f4519, type: 3}
+  - {fileID: 21300000, guid: 2cd13d4a6f4a01b4b80ef216d7649ce6, type: 3}
+  concernedChickenValue: 0.3
+  angryChickenValue: 0.7
+  angerValue: 0
+  maxHeight: 1000
 --- !u!114 &1931439713
 MonoBehaviour:
   m_ObjectHideFlags: 0
