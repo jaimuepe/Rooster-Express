@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     public DeliveryLogic[] deliveriesWithoutGarbage;
 
     BossScreen bossScreen;
-    
+
     public Canvas gameCanvas;
 
     [Range(0.0f, 100f)]
@@ -76,6 +76,8 @@ public class GameManager : MonoBehaviour
 
     int boxesInScreen = 0;
 
+    public ParticleSystem playerSweatParticleSystem;
+
     void Start()
     {
         fadePanel.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
@@ -91,6 +93,14 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (!gameStarted) { return; }
+
+        if (Anger > angryBossThreshold)
+        {
+            playerSweatParticleSystem.Play();
+        }
+        {
+            playerSweatParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        }
 
         if (boxesInScreen * angerIncreasePerBox + _anger >= 100.0f)
         {
@@ -121,12 +131,18 @@ public class GameManager : MonoBehaviour
 
         if (destroyedGarbage)
         {
-            _anger -= angerReductionDestroyGarbage;
+            if (gameStarted)
+            {
+                _anger = Mathf.Clamp(_anger - angerReductionDestroyGarbage, 0.0f, 100.0f);
+            }
             recollectedGarbage();
         }
         else
         {
-            _anger -= angerReductionDeliverPackage;
+            if (gameStarted)
+            {
+                _anger = Mathf.Clamp(_anger - angerReductionDeliverPackage, 0.0f, 100.0f);
+            }
             incrementPoints();
         }
 
@@ -163,12 +179,18 @@ public class GameManager : MonoBehaviour
 
         if (destroyedPackage)
         {
-            _anger += angerIncreaseBurntPackage;
+            if (gameStarted)
+            {
+                _anger = Mathf.Clamp(_anger + angerIncreaseBurntPackage, 0.0f, 100.0f);
+            }
             burntBoxPoints();
         }
         else
         {
-            _anger += angerIncreaseWrongDelivery;
+            if (gameStarted)
+            {
+                _anger = Mathf.Clamp(_anger + angerIncreaseWrongDelivery, 0.0f, 100.0f);
+            }
             decrementPoints();
         }
 
@@ -227,12 +249,19 @@ public class GameManager : MonoBehaviour
         wrongBoxes += 1;
     }
 
-    public void burntBoxPoints() {
+    public void burntBoxPoints()
+    {
         burntBoxes += 1;
     }
 
-    public void recollectedGarbage() {
+    public void recollectedGarbage()
+    {
         garbageCollected += 1;
     }
 
+    private void OnGUI()
+    {
+        GUI.Label(new Rect(0.0f, 15.0f, 500.0f, 60.0f), "Boxes:" + boxesInScreen);
+        GUI.Label(new Rect(0.0f, 30.0f, 500.0f, 60.0f), "Anger: " + _anger + boxesInScreen * angerIncreasePerBox);
+    }
 }

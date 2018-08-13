@@ -53,6 +53,12 @@ public class WaveSystem : MonoBehaviour
             lastDisplayModeSwap = display;
         }
         totalTime += Time.deltaTime;
+
+        if (totalTime >=totalGameTime)
+        {
+            Debug.Log("You win!");
+            Debug.Break();
+        }
     }
 
     private void SpawnWave(int wave)
