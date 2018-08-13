@@ -16,7 +16,7 @@ public class Caja : MonoBehaviour
     public float maxSpeedCollision;
     public float defaultThrowDistance;
     public bool boxWasThrown;
-    public bool pickedUpFor1stTime;
+    public bool pickedUp;
 
     GameManager gameManager;
 
@@ -25,18 +25,23 @@ public class Caja : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
 	}
 
+    public AudioClip[] brokenGlassClip;
+
     private void OnCollisionEnter(Collision collision)
     {
-        if (pickedUpFor1stTime)
+        if (pickedUp)
         {
             speedCollision = GetComponent<Rigidbody>().velocity.magnitude;
             if (speedCollision > maxSpeedCollision)
             {
                 maxSpeedCollision = speedCollision;
             }
+
             if(fragile && speedCollision > maxValueForHit) {
                 gameManager.fragileBoxesHits += 1;
+                AudioUtils.PlayClip2D(brokenGlassClip.GetRandomItem(), 1.0f);
             }
+
             float distance = Vector3.Distance(positionThrow, transform.position);
             if (distance > maxDistanceDone)
             {
@@ -53,6 +58,6 @@ public class Caja : MonoBehaviour
             }
             distance = 0;
         }
-        pickedUpFor1stTime = false;
+        pickedUp = false;
     }
 }

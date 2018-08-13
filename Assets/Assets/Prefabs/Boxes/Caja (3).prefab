@@ -127,11 +127,17 @@ MonoBehaviour:
   fragile: 0
   points: 3.5
   code: 
-  maxValueForHit: 1
+  maxValueForHit: 0.5
   positionThrow: {x: 0, y: 0, z: 0}
   maxDistanceDone: 0
   speedCollision: 0
   maxSpeedCollision: 0
   defaultThrowDistance: 2
   boxWasThrown: 0
-  pickedUpFor1stTime: 0
+  pickedUp: 0
+  brokenGlassClip:
+  - {fileID: 8300000, guid: c5bd0678c9b4e5d4e8da6f3fbab28c63, type: 3}
+  - {fileID: 8300000, guid: 12270f9038b8e324ba2dbe9cb25a9140, type: 3}
+  - {fileID: 8300000, guid: 0c3f8430f124f564388e6c66d6f67dda, type: 3}
+  - {fileID: 8300000, guid: 34535d2feb95ccb40a46e2dcba789499, type: 3}
+  - {fileID: 8300000, guid: 3e65be83a22c8d8439c594eecd617335, type: 3}

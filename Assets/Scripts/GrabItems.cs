@@ -40,11 +40,11 @@ public class GrabItems : MonoBehaviour
             boxes,
             _transform.rotation,
             pickUpMask);
-        
+
         if (results > 0)
         {
             PickUpBox(boxes[0].gameObject);
-            boxes[0].gameObject.GetComponent<Caja>().pickedUpFor1stTime = true;
+            boxes[0].gameObject.GetComponent<Caja>().pickedUp = true;
 
             AudioUtils.PlayClip2D(grabClip, 1.0f);
             return true;
@@ -59,7 +59,7 @@ public class GrabItems : MonoBehaviour
     {
         boxTransform.gameObject.GetComponent<Caja>().positionThrow = throwPosition;
         boxTransform.GetComponent<Rigidbody>().isKinematic = false;
-        boxTransform.GetComponent<Rigidbody>().AddForce((transform.TransformDirection(Vector3.up +Vector3.forward) * forceOfDrop), ForceMode.Impulse);
+        boxTransform.GetComponent<Rigidbody>().AddForce((transform.TransformDirection(Vector3.up + Vector3.forward) * forceOfDrop), ForceMode.Impulse);
         boxTransform.GetComponent<Rigidbody>().AddTorque(transform.TransformDirection(Vector3.right) * forceOfDrop / 50f, ForceMode.Impulse);
         boxTransform = null;
     }

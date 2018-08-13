@@ -905,7 +905,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1504964992311518}
   serializedVersion: 2
-  m_Mass: 100
+  m_Mass: 2
   m_Drag: 30
   m_AngularDrag: 1
   m_UseGravity: 0
@@ -958,6 +958,7 @@ MonoBehaviour:
   pickUpMask:
     serializedVersion: 2
     m_Bits: 512
+  grabClip: {fileID: 0}
 --- !u!114 &114740589335171152
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -973,7 +974,7 @@ MonoBehaviour:
   speed: 300
   speedMultiplier: 1.1
   dragDivisor: 3
-  maxForce: 40
+  maxForce: 25
   maxTimerThrow: 1.5
   minimumDrag: 0
   dragDecrement: 0
@@ -985,7 +986,7 @@ MonoBehaviour:
   minDetailDistance: -2
   maxDetailDistance: -0.3
   mouseRotationSpeed: 0
-  playerGrabbedFirstBox: 0
+  footstepClip: {fileID: 0}
 --- !u!136 &136815305440406476
 CapsuleCollider:
   m_ObjectHideFlags: 1
