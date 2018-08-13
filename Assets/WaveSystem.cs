@@ -60,8 +60,6 @@ public class WaveSystem : MonoBehaviour
         int boxes = (int)boxesSpawnedInTimeCurve.Evaluate(totalTime);
         int decals = (int)randomDecalsInTimeCurve.Evaluate(totalTime);
 
-        Debug.Log("Spawning wave " + wave + ": boxes = " + boxes + ", decals = " + decals);
-
         WaveInfo waveInfo = new WaveInfo
         {
             canSpawnCrossedLabel = true,
