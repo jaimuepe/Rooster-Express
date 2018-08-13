@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     public WaveSystem waveSpawner;
 
-    DeliveryLogic[] deliveries;
+    public DeliveryLogic[] deliveriesWithoutGarbage;
 
     BossScreen bossScreen;
 
@@ -37,7 +37,6 @@ public class GameManager : MonoBehaviour
         playerPoints = 0;
         canvas = FindObjectOfType<Canvas>();
         bossScreen = FindObjectOfType<BossScreen>();
-        deliveries = FindObjectsOfType<DeliveryLogic>();
     }
 
     public void SuccessfulDelivery()
@@ -93,12 +92,9 @@ public class GameManager : MonoBehaviour
         playerCompletedSecondtask = true;
         playerCompletedThirdTask = true;
 
-        for (int i = 0; i < deliveries.Length; i++)
+        for (int i = 0; i < deliveriesWithoutGarbage.Length; i++)
         {
-            if (deliveries[i].state != "E")
-            {
-                deliveries[i].District();
-            }
+            deliveriesWithoutGarbage[i].District(i);
         }
 
         waveSpawner.gameObject.SetActive(true);
@@ -107,12 +103,12 @@ public class GameManager : MonoBehaviour
 
     public void SwapDisplays()
     {
-        for (int i = 0; i < deliveries.Length; i++)
+        int[] indexes = { 0, 1, 2, 3 };
+        indexes.Shuffle();
+
+        for (int i = 0; i < deliveriesWithoutGarbage.Length; i++)
         {
-            if (deliveries[i].state != "E")
-            {
-                deliveries[i].SwapDisplay();
-            }
+            deliveriesWithoutGarbage[i].SwapDisplay(indexes[i]);
         }
     }
 

@@ -28,12 +28,13 @@ public class LightsManager : MonoBehaviour
             defaultColors[threadmillLights[i].GetInstanceID()] = threadmillLights[i].color;
         }
 
-        treadmillLightsCoroutine = new Coroutine[5];
+        treadmillLightsCoroutine = new Dictionary<Light, Coroutine>();
     }
 
 #if UNITY_EDITOR
     private void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.F1))
         {
             if (Input.GetKey(KeyCode.LeftShift))
@@ -89,24 +90,23 @@ public class LightsManager : MonoBehaviour
                 TurnRed(4);
             }
         }
+         */
     }
 #endif
 
     Coroutine globalLightsCoroutine;
-    Coroutine[] treadmillLightsCoroutine;
+    Dictionary<Light, Coroutine> treadmillLightsCoroutine;
 
-    public void TurnGreen(int light)
+    public void TurnGreen(Light threadmillLight)
     {
-        Light threadmillLight = threadmillLights[light];
-
         Renderer r = threadmillLight.transform.parent.GetComponent<Renderer>();
 
-        if (treadmillLightsCoroutine[light] != null)
+        if (treadmillLightsCoroutine.ContainsKey(threadmillLight) &&  treadmillLightsCoroutine[threadmillLight] != null)
         {
-            StopCoroutine(treadmillLightsCoroutine[light]);
+            StopCoroutine(treadmillLightsCoroutine[threadmillLight]);
         }
 
-        treadmillLightsCoroutine[light] = StartCoroutine(Coroutines.Chain(
+        treadmillLightsCoroutine[threadmillLight] = StartCoroutine(Coroutines.Chain(
             Coroutines.Join(
                 Coroutines.FadeColor(threadmillLight, 0.5f, threadmillLight.color, Color.green),
                 // Coroutines.FadeColor(r.material, "_Color", 0.5f, Color.white, new Color(255, 89, 89) / 255.0f),
@@ -120,7 +120,7 @@ public class LightsManager : MonoBehaviour
         AudioUtils.PlayClip2D(dingClip, 1.0f);
     }
 
-    public void TurnRed(int light)
+    public void TurnRed(Light threadmillLight)
     {
         // GLOBAL LIGHTS
 
@@ -154,16 +154,14 @@ public class LightsManager : MonoBehaviour
 
         // TREADMILL LIGHT
 
-        Light threadmillLight = threadmillLights[light];
-
-        if (treadmillLightsCoroutine[light] != null)
+        if (treadmillLightsCoroutine.ContainsKey(threadmillLight) && treadmillLightsCoroutine[threadmillLight] != null)
         {
-            StopCoroutine(treadmillLightsCoroutine[light]);
+            StopCoroutine(treadmillLightsCoroutine[threadmillLight]);
         }
 
         Renderer r = threadmillLight.transform.parent.GetComponent<Renderer>();
 
-        treadmillLightsCoroutine[light] = StartCoroutine(Coroutines.Chain(
+        treadmillLightsCoroutine[threadmillLight] = StartCoroutine(Coroutines.Chain(
             Coroutines.Join(
                 Coroutines.FadeColor(threadmillLight, 0.5f, threadmillLight.color, Color.red),
                 // Coroutines.FadeColor(r.material, "_Color", 0.5f, Color.white, new Color(255, 89, 89) / 255.0f),
