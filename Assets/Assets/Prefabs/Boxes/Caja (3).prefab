@@ -132,6 +132,9 @@ MonoBehaviour:
   gm: {fileID: 0}
   endGameCanvas: {fileID: 0}
   bossScreen: {fileID: 0}
+  bossText: {fileID: 0}
+  gameEnded: 0
+  statisticsCanvas: {fileID: 0}
 --- !u!114 &114710871443373912
 MonoBehaviour:
   m_ObjectHideFlags: 1

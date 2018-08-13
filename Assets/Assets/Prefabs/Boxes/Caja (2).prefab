@@ -132,6 +132,9 @@ MonoBehaviour:
   gm: {fileID: 0}
   endGameCanvas: {fileID: 0}
   bossScreen: {fileID: 0}
+  bossText: {fileID: 0}
+  gameEnded: 0
+  statisticsCanvas: {fileID: 0}
 --- !u!114 &114910647719491154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -146,7 +149,7 @@ MonoBehaviour:
   fragile: 0
   points: 5
   code: 
-  maxValueForHit: 1.5
+  maxValueForHit: 0.5
   positionThrow: {x: 0, y: 0, z: 0}
   maxDistanceDone: 0
   speedCollision: 0

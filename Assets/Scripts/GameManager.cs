@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
 
     public AudioSource bgMusic;
 
-    bool gameStarted = false;
+    public bool gameStarted = false;
 
     public Image fadePanel;
 
@@ -114,9 +114,45 @@ public class GameManager : MonoBehaviour
         _playerTransform = GameObject.FindWithTag("Player").transform;
     }
 
+    public bool gamePaused;
+
+    public Button continueButton;
+    public Button exitButton;
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
+
+    public void Continue()
+    {
+        if (gamePaused)
+        {
+            Time.timeScale = 1.0f;
+            continueButton.gameObject.SetActive(false);
+            exitButton.gameObject.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else
+        {
+            Time.timeScale = 0.0f;
+            continueButton.gameObject.SetActive(true);
+            exitButton.gameObject.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        gamePaused = !gamePaused;
+    }
+
     private void Update()
     {
         if (!gameStarted || endGame.gameEnded) { return; }
+
+        if (Input.GetButtonDown("Exit"))
+        {
+            Continue();
+        }
 
         if (Anger > uncomfortableBossThreshold)
         {
@@ -136,23 +172,32 @@ public class GameManager : MonoBehaviour
 
     public bool playerWon = false;
 
-    public void UpdatePoints() {
+    public void UpdatePoints()
+    {
 
         correctBoxesText.text = "Correct deliveries: " + correctBoxes + " (<color=\"green\">+$" + moneyCorrect * correctBoxes + "</color>)";
         wrongBoxesText.text = "Wrong deliveries: " + wrongBoxes + " (<color=\"red\">-$" + moneyWrong * wrongBoxes + "</color>)";
         burntBoxesText.text = "Burnt boxes: " + burntBoxes + " (<color=\"red\">-$" + moneyBurnt * burntBoxes + "</color>)";
-        fragileBoxesHitsText.text = "Fragile boxes broken: " + fragileBoxesHits + " (<color=\"red\">-$" + moneyFragileHits * fragileBoxesHits + "</color>)";
-        maximumThrowDistanceText.text = "Max. throw distance: " + System.Math.Round(maximumThrowDistance, 0) + "m (<color=\"green\">+$" 
-            + System.Math.Round(moneyThrowDistance * maximumThrowDistance, 0) + "</color>)";
+        fragileBoxesHitsText.text = "Broken stuff: " + fragileBoxesHits + " (<color=\"red\">-$" + moneyFragileHits * fragileBoxesHits + "</color>)";
+        maximumThrowDistanceText.text = "Max. throw distance: " + Mathf.RoundToInt(maximumThrowDistance) + "m (<color=\"green\">+$"
+            + Mathf.RoundToInt(moneyThrowDistance * maximumThrowDistance) + "</color>)";
         itemsThrownText.text = "Items thrown: " + itemsThrown;
-        itemsThrownCorrectText.text = "Three-point shots: " + itemsThrownCorrect + " (<color=\"green\">+$" 
+        itemsThrownCorrectText.text = "Three-point shots: " + itemsThrownCorrect + " (<color=\"green\">+$"
             + moneyThrownCorrectly * itemsThrownCorrect + "</color>)";
         garbageCollectedText.text = "Garbage collected: " + garbageCollected + " (<color=\"green\">+$" + moneyGarbage * garbageCollected + "</color>)";
-        totalMoney = (moneyCorrect * correctBoxes) - (moneyWrong * wrongBoxes) - (moneyBurnt * burntBoxes) 
+        totalMoney = (moneyCorrect * correctBoxes) - (moneyWrong * wrongBoxes) - (moneyBurnt * burntBoxes)
             - (moneyFragileHits * fragileBoxesHits) + (moneyThrowDistance * maximumThrowDistance) + (moneyThrownCorrectly * itemsThrownCorrect)
             + (garbageCollected * moneyGarbage);
         totalMoneyText.autoSizeTextContainer = true;
-        totalMoneyText.text = "YOUR SALARY: $" + System.Math.Round(totalMoney, 0);
+
+        if (totalMoney >= 0.0f)
+        {
+            totalMoneyText.text = "SALARY: $" + System.Math.Round(totalMoney, 0);
+        }
+        else
+        {
+            totalMoneyText.text = "SALARY: -$" + Mathf.RoundToInt(Mathf.Abs(totalMoney));
+        }
     }
 
     public void SuccessfulDelivery(bool destroyedGarbage)
@@ -270,7 +315,10 @@ public class GameManager : MonoBehaviour
         bgMusic.Play();
 
         waveSpawner.BeginWaves();
-        gameStarted = true;
+
+        StartCoroutine(Coroutines.Chain(
+            Coroutines.Wait(0.1f),
+            Coroutines.Wrap(() => gameStarted = true)));
     }
 
     public void SwapDisplays()

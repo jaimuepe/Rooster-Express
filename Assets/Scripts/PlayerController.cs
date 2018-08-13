@@ -82,6 +82,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (gm.gamePaused) { return; }
+
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Tab))
         {

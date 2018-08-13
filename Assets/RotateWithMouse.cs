@@ -5,9 +5,10 @@ using UnityEngine;
 public class RotateWithMouse : MonoBehaviour
 {
     Transform _transform;
-
+    GameManager gm;
     void Start()
     {
+        gm = FindObjectOfType<GameManager>();
         _transform = transform;
     }
 
@@ -16,6 +17,8 @@ public class RotateWithMouse : MonoBehaviour
 
     private void Update()
     {
+        if (gm.gamePaused) { return; }
+
         Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
         Vector3 deltaRotation = Vector3.zero;
