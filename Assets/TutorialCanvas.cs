@@ -13,12 +13,21 @@ public class TutorialCanvas : MonoBehaviour
     public Image commandPanel;
 
     public float textFadeTime;
+    public GameObject skipTutorialHintText;
 
     BossScreen screen;
 
     private void Start()
     {
         screen = FindObjectOfType<BossScreen>();
+    }
+
+    public void CleanState()
+    {
+        screen.Relaxed();
+        commandtext.color = new Color(commandtext.color.r, commandtext.color.g, commandtext.color.b, 0.0f);
+        tutorialText.color = new Color(tutorialText.color.r, tutorialText.color.g, tutorialText.color.b, 0.0f);
+        skipTutorialHintText.gameObject.SetActive(false);
     }
 
     public IEnumerator DisplayCommand(string text)
@@ -33,8 +42,8 @@ public class TutorialCanvas : MonoBehaviour
     public IEnumerator HideCommand()
     {
         return Coroutines.Join(
-                Coroutines.FadeAlpha10(commandtext, textFadeTime)
-                );
+            Coroutines.FadeAlpha10(commandtext, textFadeTime)
+            );
     }
 
     public IEnumerator DisplayText(string text, float length)
@@ -48,8 +57,7 @@ public class TutorialCanvas : MonoBehaviour
             Coroutines.Wait(length),
             Coroutines.Join(
                 Coroutines.FadeAlpha10(tutorialText, textFadeTime),
-                 Coroutines.Wrap(() => screen.Relaxed())
-                )
+                Coroutines.Wrap(() => screen.Relaxed()))
         );
     }
 }
