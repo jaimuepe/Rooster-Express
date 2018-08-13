@@ -11,19 +11,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: KingFont_Outline
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: -380811289
   material: {fileID: 21460648464733844}
-  materialHashCode: 0
+  materialHashCode: 1090717836
   fontAssetType: 2
   m_fontInfo:
     Name: King
     PointSize: 72
-    Scale: 0
+    Scale: 1
     CharacterCount: 97
     LineHeight: 78
     Baseline: 0
     Ascender: 51
-    CapHeight: 0
+    CapHeight: 47.999996
     Descender: -16
     CenterLine: 0
     SuperscriptOffset: 51
@@ -33,7 +33,7 @@ MonoBehaviour:
     UnderlineThickness: 3.6000001
     strikethrough: 12.727273
     strikethroughThickness: 3.6000001
-    TabWidth: 0
+    TabWidth: 430
     Padding: 5
     AtlasWidth: 512
     AtlasHeight: 512
@@ -42,10 +42,10 @@ MonoBehaviour:
   - id: 32
     x: 5
     y: 507
-    width: 0
-    height: 0
+    width: 43
+    height: 67
     xOffset: 0
-    yOffset: 0
+    yOffset: 51
     xAdvance: 43
     scale: 1
   - id: 33

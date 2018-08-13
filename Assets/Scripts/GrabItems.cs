@@ -38,10 +38,11 @@ public class GrabItems : MonoBehaviour
             boxes,
             _transform.rotation,
             pickUpMask);
-
+        
         if (results > 0)
         {
             PickUpBox(boxes[0].gameObject);
+            boxes[0].gameObject.GetComponent<Caja>().pickedUpFor1stTime = true;
             return true;
         }
         return false;
@@ -50,8 +51,9 @@ public class GrabItems : MonoBehaviour
     public bool CarryingItem { get { return boxTransform != null; } }
     public Transform BoxTransform { get { return boxTransform; } }
 
-    public void DropBox(float forceOfDrop)
+    public void DropBox(float forceOfDrop, Vector3 throwPosition)
     {
+        boxTransform.gameObject.GetComponent<Caja>().positionThrow = throwPosition;
         boxTransform.GetComponent<Rigidbody>().isKinematic = false;
         boxTransform.GetComponent<Rigidbody>().AddForce((transform.TransformDirection(Vector3.up +Vector3.forward) * forceOfDrop), ForceMode.Impulse);
         boxTransform.GetComponent<Rigidbody>().AddTorque(transform.TransformDirection(Vector3.right) * forceOfDrop / 50f, ForceMode.Impulse);
