@@ -8,21 +8,22 @@ public class Caja : MonoBehaviour
     public float points;
     public string code;
 
+    public float maxValueForHit;
+
     public Vector3 positionThrow;
+    public float maxDistanceDone;
     public float speedCollision;
     public float maxSpeedCollision;
+    public float defaultThrowDistance;
+    public bool boxWasThrown;
     public bool pickedUpFor1stTime;
 
-    // Use this for initialization
-    void Start()
-    {
-    }
+    GameManager gameManager;
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+	// Use this for initialization
+	void Start () {
+        gameManager = FindObjectOfType<GameManager>();
+	}
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -33,7 +34,25 @@ public class Caja : MonoBehaviour
             {
                 maxSpeedCollision = speedCollision;
             }
+            if(fragile && speedCollision > maxValueForHit) {
+                gameManager.fragileBoxesHits += 1;
+            }
+            float distance = Vector3.Distance(positionThrow, transform.position);
+            if (distance > maxDistanceDone)
+            {
+                maxDistanceDone = distance;
+            }
+            if (gameManager.maximumThrowDistance < maxDistanceDone) {
+                gameManager.maximumThrowDistance = maxDistanceDone;
+            }
+            if(distance > defaultThrowDistance) {
+                gameManager.itemsThrown += 1;
+                boxWasThrown = true;
+            } else {
+                boxWasThrown = false;
+            }
+            distance = 0;
         }
+        pickedUpFor1stTime = false;
     }
-
 }

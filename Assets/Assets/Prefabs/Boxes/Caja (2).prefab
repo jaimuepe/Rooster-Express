@@ -124,5 +124,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 857b148a300604c9ea500ac202e63527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fragile: 0
   points: 5
   code: 
+  maxValueForHit: 3
+  positionThrow: {x: 0, y: 0, z: 0}
+  maxDistanceDone: 0
+  speedCollision: 0
+  maxSpeedCollision: 0
+  defaultThrowDistance: 3
+  boxWasThrown: 0
+  pickedUpFor1stTime: 0
