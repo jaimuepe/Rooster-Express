@@ -1195,6 +1195,8 @@ MonoBehaviour:
   - {fileID: 914257845}
   - {fileID: 1334798991}
   - {fileID: 1152242231}
+  gameCanvas: {fileID: 748917373}
+  anger: 0
 --- !u!4 &483043833
 Transform:
   m_ObjectHideFlags: 0
@@ -6433,7 +6435,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &748917371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7332,6 +7334,7 @@ MonoBehaviour:
   - {fileID: 1555461382345028, guid: ccba6acb9074ddb4ca72df15dd5bb403, type: 2}
   - {fileID: 1555461382345028, guid: ad043963082155045a6fa36c5ff6e40c, type: 2}
   - {fileID: 1555461382345028, guid: 7f5cbee3e272af646a55e0b7783f9416, type: 2}
+  - {fileID: 1555461382345028, guid: ac78481ac3a986d4a98c21016d5f58e4, type: 2}
   randomDecals:
   - {fileID: 2100000, guid: e7028aecadfaac341a894c37cde0f4db, type: 2}
   - {fileID: 2100000, guid: f1c3046dcdf722340b0f0172f850109c, type: 2}
@@ -8585,7 +8588,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -720.66, y: 40}
+  m_AnchoredPosition: {x: -720.66, y: 90}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1499938425
@@ -9597,7 +9600,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 100, y: 40}
+  m_AnchoredPosition: {x: 100, y: 90}
   m_SizeDelta: {x: 100, y: 0}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1931439710
@@ -9652,8 +9655,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2cd13d4a6f4a01b4b80ef216d7649ce6, type: 3}
   concernedChickenValue: 0.3
   angryChickenValue: 0.7
-  angerValue: 0
-  maxHeight: 1000
+  maxHeight: 900
 --- !u!114 &1931439713
 MonoBehaviour:
   m_ObjectHideFlags: 0

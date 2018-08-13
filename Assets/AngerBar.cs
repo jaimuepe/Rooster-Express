@@ -11,16 +11,16 @@ public class AngerBar : MonoBehaviour
     public float concernedChickenValue;
     public float angryChickenValue;
 
-    [Range(0.0f, 1.0f)]
-    public float angerValue;
-
     [SerializeField]
     float maxHeight;
     RectTransform rectTransform;
     RectTransform chickenRectTransform;
 
+    GameManager gm;
+
     void Start()
     {
+        gm = FindObjectOfType<GameManager>();
         rectTransform = GetComponent<RectTransform>();
         chickenRectTransform = chicken.GetComponent<RectTransform>();
     }
@@ -29,13 +29,14 @@ public class AngerBar : MonoBehaviour
     {
 #if UNITY_EDITOR
         if (chickenRectTransform == null) { chickenRectTransform = chicken.GetComponent<RectTransform>(); }
+        if (gm == null) { gm = FindObjectOfType<GameManager>(); }
 #endif
-        rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, angerValue * maxHeight);
-        if (angerValue < concernedChickenValue)
+        rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, gm.anger * maxHeight);
+        if (gm.anger < concernedChickenValue)
         {
             chicken.sprite = chickenSprites[0];
         }
-        else if (angerValue < angryChickenValue)
+        else if (gm.anger < angryChickenValue)
         {
             chicken.sprite = chickenSprites[1];
         }
@@ -46,6 +47,6 @@ public class AngerBar : MonoBehaviour
 
         chickenRectTransform.anchoredPosition = new Vector2(
             chickenRectTransform.anchoredPosition.x,
-            rectTransform.anchoredPosition.y + angerValue * maxHeight);
+            rectTransform.anchoredPosition.y + gm.anger * maxHeight);
     }
 }

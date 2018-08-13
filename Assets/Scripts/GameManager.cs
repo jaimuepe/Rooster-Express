@@ -36,6 +36,10 @@ public class GameManager : MonoBehaviour
 
     BossScreen bossScreen;
 
+    public Canvas gameCanvas;
+
+    [Range(0.0f, 1.0f)]
+    public float anger;
 
     void Start()
     {
@@ -104,6 +108,8 @@ public class GameManager : MonoBehaviour
         }
 
         waveSpawner.gameObject.SetActive(true);
+        gameCanvas.gameObject.SetActive(true);
+
         waveSpawner.BeginWaves();
     }
 
