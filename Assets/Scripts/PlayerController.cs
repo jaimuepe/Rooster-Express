@@ -177,7 +177,7 @@ public class PlayerController : MonoBehaviour
                     float forceOfDrop = 0f;
                     forceOfDrop = maxForce * Mathf.Clamp01(deltaTimeForce / maxTimerThrow);
                     Debug.Log("Time: " + deltaTimeForce + ", force: " + forceOfDrop);
-                    grabber.DropBox(forceOfDrop);
+                    grabber.DropBox(forceOfDrop, transform.position);
                     forceOfDrop = 0.0f;
                     deltaTimeForce = 0f;
                 }

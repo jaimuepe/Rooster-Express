@@ -48,7 +48,7 @@ public class DeliveryLogic : MonoBehaviour
             if (state == objectCode)
             {
                 gameManager.SuccessfulDelivery();
-                // gameManager.incrementPoints((float)System.Math.Round(other.GetComponent<Caja>().points, 2));
+                gameManager.incrementPoints((float)System.Math.Round(other.GetComponent<Caja>().points, 2));
                 switch (state)
                 {
                     case "A":
@@ -74,7 +74,7 @@ public class DeliveryLogic : MonoBehaviour
             else
             {
                 gameManager.UnsucessfulDelivery(state == "E");
-                // gameManager.decrementPoints((float)System.Math.Round(other.GetComponent<Caja>().points, 2));
+                gameManager.decrementPoints((float)System.Math.Round(other.GetComponent<Caja>().points, 2));
                 switch (state)
                 {
                     case "A":
