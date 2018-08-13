@@ -94,10 +94,11 @@ public class GameManager : MonoBehaviour
     {
         if (!gameStarted) { return; }
 
-        if (Anger > angryBossThreshold)
+        if (Anger > uncomfortableBossThreshold)
         {
-            playerSweatParticleSystem.Play();
-        }
+            playerSweatParticleSystem.Play(true);
+        } 
+        else
         {
             playerSweatParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         }
@@ -257,11 +258,5 @@ public class GameManager : MonoBehaviour
     public void recollectedGarbage()
     {
         garbageCollected += 1;
-    }
-
-    private void OnGUI()
-    {
-        GUI.Label(new Rect(0.0f, 15.0f, 500.0f, 60.0f), "Boxes:" + boxesInScreen);
-        GUI.Label(new Rect(0.0f, 30.0f, 500.0f, 60.0f), "Anger: " + _anger + boxesInScreen * angerIncreasePerBox);
     }
 }

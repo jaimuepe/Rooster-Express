@@ -73,7 +73,13 @@ public class PlayerController : MonoBehaviour
     }
     float scale = 1.0f;
 
-    // Update is called once per frame
+    public AudioClip footstepClip;
+
+    public void PlayFootstep()
+    {
+        AudioUtils.PlayClip2D(footstepClip, 0.5f);
+    }
+
     void Update()
     {
 #if UNITY_EDITOR
@@ -83,7 +89,9 @@ public class PlayerController : MonoBehaviour
             {
                 scale = .1f;
 
-            } else {
+            }
+            else
+            {
                 scale = 1.0f;
             }
             Time.timeScale = scale;
@@ -112,13 +120,16 @@ public class PlayerController : MonoBehaviour
 
                         Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
-                        if (mouseDelta.x != 0.0f)
+                        if (mouseDelta.x != 0.0f || mouseDelta.y != 0.0f)
                         {
-                            displacement -= mouseDelta.x * detailMovementSpeed * Vector3.right;
-                        }
-                        if (mouseDelta.y != 0.0f)
-                        {
-                            displacement -= mouseDelta.y * detailMovementSpeed * Vector3.up;
+                            if (mouseDelta.x != 0.0f)
+                            {
+                                displacement -= mouseDelta.x * detailMovementSpeed * Vector3.right;
+                            }
+                            if (mouseDelta.y != 0.0f)
+                            {
+                                displacement -= mouseDelta.y * detailMovementSpeed * Vector3.up;
+                            }
                         }
 
                         displacement.x = Mathf.Clamp(displacement.x, -1.0f, 1.0f);
@@ -141,7 +152,7 @@ public class PlayerController : MonoBehaviour
 
                         float moveHorizontal = Input.GetAxis("Horizontal");
                         float moveVertical = Input.GetAxis("Vertical");
-                        
+
                         if (moveHorizontal != 0.0f || moveVertical != 0.0f)
                         {
                             Vector3 displacement = detailCamera.transform.localPosition;
@@ -247,9 +258,20 @@ public class PlayerController : MonoBehaviour
             {
                 float deltaAngle = mouseDelta.x;
 
-                // TODO no queda bien, revisar
                 Vector3 lookVector = (mouseDelta.x * cameraRight + mouseDelta.y * fwd).normalized;
                 lastDirection = Vector3.RotateTowards(lastDirection, lookVector, .1f, .1f);
+            }
+            else
+            {
+                mouseDelta = new Vector2(Input.GetAxis("Controller Mouse X"), Input.GetAxis("Controller Mouse Y"));
+
+                if (Mathf.Abs(mouseDelta.x) > .1f)
+                {
+                    float deltaAngle = mouseDelta.x;
+
+                    Vector3 lookVector = (mouseDelta.x * cameraRight + mouseDelta.y * fwd).normalized;
+                    lastDirection = Vector3.RotateTowards(lastDirection, lookVector, 10.0f, 10.0f);
+                }
             }
         }
 

@@ -141,11 +141,10 @@ public class BoxSpawner : MonoBehaviour
         };
         Transform decalTransform = decalObj.transform;
 
-
         float aspectRatio = (float)decalMaterial.mainTexture.height / decalMaterial.mainTexture.width;
 
         decalTransform.localScale = scale * new Vector3(0.1f, 0.1f * aspectRatio, 3.0f);
-        decalTransform.position -= new Vector3(0.0f, 0.0f, 1.5f);
+        // decalTransform.position -= new Vector3(0.0f, 0.0f, 1.5f);
         decalTransform.SetParent(decalContainerTransform, false);
 
         Decal decal = decalObj.AddComponent<Decal>();

@@ -12,6 +12,8 @@ public class GrabItems : MonoBehaviour
 
     public LayerMask pickUpMask;
 
+    public AudioClip grabClip;
+
     private void Start()
     {
         _transform = transform;
@@ -43,6 +45,8 @@ public class GrabItems : MonoBehaviour
         {
             PickUpBox(boxes[0].gameObject);
             boxes[0].gameObject.GetComponent<Caja>().pickedUpFor1stTime = true;
+
+            AudioUtils.PlayClip2D(grabClip, 1.0f);
             return true;
         }
         return false;

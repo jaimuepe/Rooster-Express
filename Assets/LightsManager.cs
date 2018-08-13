@@ -11,8 +11,6 @@ public class LightsManager : MonoBehaviour
 
     Dictionary<int, Color> defaultColors = new Dictionary<int, Color>();
 
-    public AudioClip buzzerClip;
-    public AudioClip dingClip;
 
     private void Start()
     {
@@ -116,8 +114,6 @@ public class LightsManager : MonoBehaviour
                 Coroutines.FadeColor(threadmillLight, 0.5f, Color.green, GetDefaultColor(threadmillLight)),
                 // Coroutines.FadeColor(r.material, "_Color", 0.5f, new Color(255, 89, 89) / 255.0f, Color.white),
                 Coroutines.FadeColor(r.material, "_EmissionColor", 0.5f, Color.green, Color.black))));
-
-        AudioUtils.PlayClip2D(dingClip, 1.0f);
     }
 
     public void TurnRed(Light threadmillLight)
@@ -171,8 +167,6 @@ public class LightsManager : MonoBehaviour
                 Coroutines.FadeColor(threadmillLight, 0.5f, Color.red, GetDefaultColor(threadmillLight)),
                 // Coroutines.FadeColor(r.material, "_Color", 0.5f, new Color(255, 89, 89) / 255.0f, Color.white),
                 Coroutines.FadeColor(r.material, "_EmissionColor", 0.5f, Color.red, Color.black))));
-
-        AudioUtils.PlayClip2D(buzzerClip, 1.0f);
     }
 
     private Color GetDefaultColor(Light light)

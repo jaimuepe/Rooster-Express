@@ -49,6 +49,10 @@ public class DeliveryLogic : MonoBehaviour
             )));
     }
 
+    public AudioClip buzzerClip;
+    public AudioClip dingClip;
+    public AudioClip fireClip;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Caja"))
@@ -58,12 +62,13 @@ public class DeliveryLogic : MonoBehaviour
 
             if (state == caja.code)
             {
-                if(caja.boxWasThrown) {
+                if (caja.boxWasThrown)
+                {
                     gameManager.itemsThrownCorrect += 1;
                 }
                 gameManager.SuccessfulDelivery(caja.code == "E");
                 FindObjectOfType<LightsManager>().TurnGreen(screenLight);
-                
+
                 switch (state)
                 {
                     case "A":
@@ -83,13 +88,18 @@ public class DeliveryLogic : MonoBehaviour
                         break;
                     default:
                         break;
+                }
+
+                if (state != "E")
+                {
+                    AudioUtils.PlayClip2D(dingClip, 1.0f);
                 }
             }
             else
             {
                 gameManager.UnsucessfulDelivery(state == "E");
                 FindObjectOfType<LightsManager>().TurnRed(screenLight);
-                
+
                 switch (state)
                 {
                     case "A":
@@ -110,7 +120,18 @@ public class DeliveryLogic : MonoBehaviour
                     default:
                         break;
                 }
+
+                if (state != "E")
+                {
+                    AudioUtils.PlayClip2D(buzzerClip, 1.0f);
+                }
             }
+
+            if (state == "E")
+            {
+                AudioUtils.PlayClip2D(fireClip, 1.0f);
+            }
+
             Destroy(other.gameObject);
         }
     }

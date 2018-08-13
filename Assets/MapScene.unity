@@ -403,6 +403,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1217947879749270, guid: 855b06a440935e6489827e41610f915f, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198163978205758286, guid: 855b06a440935e6489827e41610f915f,
+        type: 2}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -858,6 +863,16 @@ Prefab:
       propertyPath: screenLight
       value: 
       objectReference: {fileID: 1959988638}
+    - target: {fileID: 114843417486884416, guid: bbc45764043924463bdf49fce4fc04ad,
+        type: 2}
+      propertyPath: dingClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c41c98cfbc83340448e675eace489227, type: 3}
+    - target: {fileID: 114843417486884416, guid: bbc45764043924463bdf49fce4fc04ad,
+        type: 2}
+      propertyPath: buzzerClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1fe5e0c1e42531d468e6d86a370d832c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbc45764043924463bdf49fce4fc04ad, type: 2}
   m_IsPrefabAsset: 0
@@ -1661,6 +1676,16 @@ Prefab:
       propertyPath: screenLight
       value: 
       objectReference: {fileID: 1966019023}
+    - target: {fileID: 114843417486884416, guid: bbc45764043924463bdf49fce4fc04ad,
+        type: 2}
+      propertyPath: dingClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c41c98cfbc83340448e675eace489227, type: 3}
+    - target: {fileID: 114843417486884416, guid: bbc45764043924463bdf49fce4fc04ad,
+        type: 2}
+      propertyPath: buzzerClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1fe5e0c1e42531d468e6d86a370d832c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbc45764043924463bdf49fce4fc04ad, type: 2}
   m_IsPrefabAsset: 0
@@ -1802,6 +1827,16 @@ Prefab:
       propertyPath: screenLight
       value: 
       objectReference: {fileID: 584798025}
+    - target: {fileID: 114843417486884416, guid: bbc45764043924463bdf49fce4fc04ad,
+        type: 2}
+      propertyPath: dingClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c41c98cfbc83340448e675eace489227, type: 3}
+    - target: {fileID: 114843417486884416, guid: bbc45764043924463bdf49fce4fc04ad,
+        type: 2}
+      propertyPath: buzzerClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1fe5e0c1e42531d468e6d86a370d832c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbc45764043924463bdf49fce4fc04ad, type: 2}
   m_IsPrefabAsset: 0
@@ -6874,6 +6909,16 @@ Prefab:
       propertyPath: screenLight
       value: 
       objectReference: {fileID: 54334413}
+    - target: {fileID: 114843417486884416, guid: bbc45764043924463bdf49fce4fc04ad,
+        type: 2}
+      propertyPath: dingClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c41c98cfbc83340448e675eace489227, type: 3}
+    - target: {fileID: 114843417486884416, guid: bbc45764043924463bdf49fce4fc04ad,
+        type: 2}
+      propertyPath: buzzerClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1fe5e0c1e42531d468e6d86a370d832c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbc45764043924463bdf49fce4fc04ad, type: 2}
   m_IsPrefabAsset: 0
@@ -6926,6 +6971,16 @@ Prefab:
       propertyPath: detailCameraContainerTransform
       value: 
       objectReference: {fileID: 1851919807}
+    - target: {fileID: 114740589335171152, guid: c348c000f8796fb4faa3110b483d9f55,
+        type: 2}
+      propertyPath: footstepClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1e125b5d764136d448ba07adaac50dff, type: 3}
+    - target: {fileID: 114061809408245464, guid: c348c000f8796fb4faa3110b483d9f55,
+        type: 2}
+      propertyPath: grabClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5d48f5f6ddea2cc4b97fe94bcd9a0654, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c348c000f8796fb4faa3110b483d9f55, type: 2}
   m_IsPrefabAsset: 0
@@ -9612,8 +9667,6 @@ MonoBehaviour:
   - {fileID: 1959988638}
   - {fileID: 54334413}
   - {fileID: 567070103}
-  buzzerClip: {fileID: 8300000, guid: 1fe5e0c1e42531d468e6d86a370d832c, type: 3}
-  dingClip: {fileID: 8300000, guid: 5d03b9312ecf18e4a99c19b6530feb54, type: 3}
 --- !u!4 &1811224420
 Transform:
   m_ObjectHideFlags: 0
@@ -10106,6 +10159,21 @@ Prefab:
       propertyPath: screenLight
       value: 
       objectReference: {fileID: 567070103}
+    - target: {fileID: 114843417486884416, guid: bbc45764043924463bdf49fce4fc04ad,
+        type: 2}
+      propertyPath: fireClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 74db46019213c214aaf38479d748d79a, type: 3}
+    - target: {fileID: 114843417486884416, guid: bbc45764043924463bdf49fce4fc04ad,
+        type: 2}
+      propertyPath: buzzerClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1fe5e0c1e42531d468e6d86a370d832c, type: 3}
+    - target: {fileID: 114843417486884416, guid: bbc45764043924463bdf49fce4fc04ad,
+        type: 2}
+      propertyPath: dingClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c41c98cfbc83340448e675eace489227, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbc45764043924463bdf49fce4fc04ad, type: 2}
   m_IsPrefabAsset: 0

@@ -22,7 +22,7 @@ public class Tutorial : MonoBehaviour
 
     private void Update()
     {
-        if (!skipped && Input.GetKeyDown(KeyCode.Escape))
+        if (!skipped && Input.GetButtonDown("Exit"))
         {
             SkipTutorial();
             skipped = true;
