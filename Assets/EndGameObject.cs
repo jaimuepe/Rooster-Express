@@ -30,6 +30,9 @@ public class EndGameObject : MonoBehaviour
         gameEnded = true;
         StopAllCoroutines();
 
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         gm.UpdatePoints();
         controller.ExitDetailView();
         grabber.DropBox(0.0f, controller.transform.position);

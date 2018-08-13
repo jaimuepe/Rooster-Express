@@ -150,7 +150,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 62dbfa1471ae9a046bc6b14ec7b94a2c, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 62dbfa1471ae9a046bc6b14ec7b94a2c, type: 3}
       propertyPath: m_Name
@@ -492,7 +492,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 62dbfa1471ae9a046bc6b14ec7b94a2c, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 62dbfa1471ae9a046bc6b14ec7b94a2c, type: 3}
       propertyPath: m_Name
@@ -784,7 +784,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 78ab8d3a6874e8847a0f6efbbdb15427, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 78ab8d3a6874e8847a0f6efbbdb15427, type: 3}
       propertyPath: m_Materials.Array.data[1]
@@ -1270,7 +1270,7 @@ RectTransform:
   m_LocalScale: {x: 1.0000082, y: 1.0000082, z: 1.0000082}
   m_Children: []
   m_Father: {fileID: 729668466}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -2128,7 +2128,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 729668466}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2672,7 +2672,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 78ab8d3a6874e8847a0f6efbbdb15427, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 78ab8d3a6874e8847a0f6efbbdb15427, type: 3}
       propertyPath: m_Name
@@ -7529,10 +7529,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 662587402}
-  - {fileID: 622315300}
   - {fileID: 1638591455}
   - {fileID: 1336928261}
   - {fileID: 425628497}
+  - {fileID: 622315300}
   m_Father: {fileID: 0}
   m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7693,7 +7693,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 78ab8d3a6874e8847a0f6efbbdb15427, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 78ab8d3a6874e8847a0f6efbbdb15427, type: 3}
       propertyPath: m_Name
@@ -8003,7 +8003,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4997742403974350, guid: c348c000f8796fb4faa3110b483d9f55, type: 2}
       propertyPath: m_RootOrder
-      value: 18
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 114740589335171152, guid: c348c000f8796fb4faa3110b483d9f55,
         type: 2}
@@ -8600,7 +8600,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c6945dfa1c40f094ebda673f7835714a, type: 3}
       propertyPath: m_RootOrder
-      value: 22
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: c6945dfa1c40f094ebda673f7835714a, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -9702,7 +9702,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ea7d715d69718134092bf55d8b706b3e, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: ea7d715d69718134092bf55d8b706b3e, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -9904,7 +9904,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 62dbfa1471ae9a046bc6b14ec7b94a2c, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 62dbfa1471ae9a046bc6b14ec7b94a2c, type: 3}
       propertyPath: m_Materials.Array.data[1]
@@ -10222,7 +10222,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 729668466}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -10824,7 +10824,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 78ab8d3a6874e8847a0f6efbbdb15427, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 78ab8d3a6874e8847a0f6efbbdb15427, type: 3}
       propertyPath: m_Name
@@ -11096,7 +11096,7 @@ RectTransform:
   m_LocalScale: {x: 0.8, y: 0.9, z: 1}
   m_Children: []
   m_Father: {fileID: 729668466}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -11335,7 +11335,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 62dbfa1471ae9a046bc6b14ec7b94a2c, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 62dbfa1471ae9a046bc6b14ec7b94a2c, type: 3}
       propertyPath: m_Name
@@ -11525,7 +11525,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 78ab8d3a6874e8847a0f6efbbdb15427, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 78ab8d3a6874e8847a0f6efbbdb15427, type: 3}
       propertyPath: m_Name
@@ -12127,7 +12127,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 62dbfa1471ae9a046bc6b14ec7b94a2c, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 62dbfa1471ae9a046bc6b14ec7b94a2c, type: 3}
       propertyPath: m_Name
@@ -12748,7 +12748,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c6945dfa1c40f094ebda673f7835714a, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: c6945dfa1c40f094ebda673f7835714a, type: 3}
       propertyPath: m_Materials.Array.data[0]
