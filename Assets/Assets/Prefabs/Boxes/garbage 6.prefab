@@ -22,10 +22,7 @@ GameObject:
   - component: {fileID: 33098806668242930}
   - component: {fileID: 23291314308098076}
   - component: {fileID: 65007269873510382}
-  - component: {fileID: 114186561352659936}
   - component: {fileID: 54383483343384172}
-  - component: {fileID: 65748579543016578}
-  - component: {fileID: 54268470533666414}
   - component: {fileID: 114873667102147672}
   m_Layer: 9
   m_Name: garbage 6
@@ -41,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1302763884048362}
   m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 2.9542227, y: 0.1920251, z: -0.95095545}
+  m_LocalPosition: {x: 0.27001524, y: 1.2567859, z: 2.440001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -117,56 +114,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.7407599, y: 0.85277903, z: 0.38404998}
   m_Center: {x: -0.0049484074, y: -0.010359379, z: 0}
---- !u!114 &114186561352659936
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1302763884048362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 857b148a300604c9ea500ac202e63527, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fragile: 0
-  points: 0
-  code: 
-  maxValueForHit: 0
-  positionThrow: {x: 0, y: 0, z: 0}
-  maxDistanceDone: 0
-  speedCollision: 0
-  maxSpeedCollision: 0
-  defaultThrowDistance: 0
-  boxWasThrown: 0
-  pickedUp: 0
-  brokenGlassClip: []
---- !u!54 &54268470533666414
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1302763884048362}
-  serializedVersion: 2
-  m_Mass: 5
-  m_Drag: 1
-  m_AngularDrag: 0
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!65 &65748579543016578
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1302763884048362}
-  m_Material: {fileID: 13400000, guid: acdc1b5e3ebd1774eb878e015744ee76, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.8534733, y: 0.25840855, z: 0.67507005}
-  m_Center: {x: 0.000000029802322, y: 0.000000007450581, z: 0}
 --- !u!114 &114873667102147672
 MonoBehaviour:
   m_ObjectHideFlags: 1
