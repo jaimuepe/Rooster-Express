@@ -8,8 +8,6 @@ public class AngerBar : MonoBehaviour
 {
     public Image chicken;
     public Sprite[] chickenSprites;
-    public float concernedChickenValue;
-    public float angryChickenValue;
 
     [SerializeField]
     float maxHeight;
@@ -32,11 +30,11 @@ public class AngerBar : MonoBehaviour
         if (gm == null) { gm = FindObjectOfType<GameManager>(); }
 #endif
         rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, gm.anger * maxHeight);
-        if (gm.anger < concernedChickenValue)
+        if (gm.anger < gm.uncomfortableBossThreshold)
         {
             chicken.sprite = chickenSprites[0];
         }
-        else if (gm.anger < angryChickenValue)
+        else if (gm.anger < gm.angryBossThreshold)
         {
             chicken.sprite = chickenSprites[1];
         }

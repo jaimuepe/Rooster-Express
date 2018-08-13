@@ -41,6 +41,19 @@ public class GameManager : MonoBehaviour
     [Range(0.0f, 1.0f)]
     public float anger;
 
+    public float angerReductionDestroyGarbage;
+    public float angerReductionDeliverPackage;
+    public float angerIncreaseWrongDelivery;
+    public float angerIncreaseBurntPackage;
+    public float angerIncreasePerBox;
+    public float angerIncreaseFragileBoxHit;
+    public float angerDecay;
+
+    public float angryBossThreshold;
+    public float uncomfortableBossThreshold;
+
+    bool gameStarted = false;
+
     void Start()
     {
         playerPoints = 0;
@@ -49,7 +62,13 @@ public class GameManager : MonoBehaviour
         _playerTransform = GameObject.FindWithTag("Player").transform;
     }
 
-    public void SuccessfulDelivery()
+    private void Update()
+    {
+     if (!gameStarted) { return; }
+        anger -= angerDecay * Time.deltaTime;
+    }
+
+    public void SuccessfulDelivery(bool destroyedGarbage)
     {
         if (!playerCompletedFirstTask)
         {
@@ -70,7 +89,21 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        if (destroyedGarbage)
+        {
+            anger -= angerReductionDestroyGarbage;
+        }
+        else
+        {
+            anger -= angerReductionDeliverPackage;
+        }
+
         bossScreen.Relaxed();
+    }
+
+    public void OnBoxSpawned()
+    {
+        anger += angerIncreasePerBox;
     }
 
     public void UnsucessfulDelivery(bool destroyedPackage)
@@ -93,7 +126,24 @@ public class GameManager : MonoBehaviour
                 playerCompletedThirdTaskSuccessful = false;
             }
         }
-        bossScreen.What();
+
+        if (destroyedPackage)
+        {
+            anger += angerIncreaseBurntPackage;
+        }
+        else
+        {
+            anger += angerIncreaseWrongDelivery;
+        }
+
+        if (anger > angryBossThreshold)
+        {
+            bossScreen.Angry();
+        }
+        else
+        {
+            bossScreen.What();
+        }
     }
 
     public void StartGame()
@@ -111,6 +161,7 @@ public class GameManager : MonoBehaviour
         gameCanvas.gameObject.SetActive(true);
 
         waveSpawner.BeginWaves();
+        gameStarted = true;
     }
 
     public void SwapDisplays()
@@ -140,7 +191,8 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private void showCoinText(string text) {
+    private void showCoinText(string text)
+    {
         coinText.text = text;
         coinText.autoSizeTextContainer = true;
     }

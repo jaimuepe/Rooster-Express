@@ -58,7 +58,7 @@ public class DeliveryLogic : MonoBehaviour
 
             if (state == objectCode)
             {
-                gameManager.SuccessfulDelivery();
+                gameManager.SuccessfulDelivery(objectCode == "E");
                 FindObjectOfType<LightsManager>().TurnGreen(screenLight);
                 gameManager.incrementPoints((float)System.Math.Round(other.GetComponent<Caja>().points, 2));
 				

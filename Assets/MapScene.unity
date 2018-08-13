@@ -1197,6 +1197,15 @@ MonoBehaviour:
   - {fileID: 1152242231}
   gameCanvas: {fileID: 748917373}
   anger: 0
+  angerReductionDestroyGarbage: 5
+  angerReductionDeliverPackage: 10
+  angerIncreaseWrongDelivery: 5
+  angerIncreaseBurntPackage: 10
+  angerIncreasePerBox: 0.5
+  angerIncreaseFragileBoxHit: 0
+  angerDecay: 0.1
+  angryBossThreshold: 70
+  uncomfortableBossThreshold: 30
 --- !u!4 &483043833
 Transform:
   m_ObjectHideFlags: 0
