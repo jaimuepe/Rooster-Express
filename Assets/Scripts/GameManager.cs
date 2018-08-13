@@ -21,9 +21,14 @@ public class GameManager : MonoBehaviour
     public bool playerCompletedSecondtask;
     public bool playerCompletedSecondTaskSuccessful;
 
+    public bool playerCompletedThirdTask;
+    public bool playerCompletedThirdTaskSuccessful;
+
     public bool tutorialDifferentDisplaysExplained = false;
 
     public WaveSystem waveSpawner;
+
+    DeliveryLogic[] deliveries;
 
     BossScreen bossScreen;
 
@@ -32,6 +37,7 @@ public class GameManager : MonoBehaviour
         playerPoints = 0;
         canvas = FindObjectOfType<Canvas>();
         bossScreen = FindObjectOfType<BossScreen>();
+        deliveries = FindObjectsOfType<DeliveryLogic>();
     }
 
     public void SuccessfulDelivery()
@@ -48,7 +54,13 @@ public class GameManager : MonoBehaviour
                 playerCompletedSecondtask = true;
                 playerCompletedSecondTaskSuccessful = true;
             }
+            else if (!playerCompletedThirdTask)
+            {
+                playerCompletedThirdTask = true;
+                playerCompletedThirdTaskSuccessful = true;
+            }
         }
+
         bossScreen.Relaxed();
     }
 
@@ -58,7 +70,6 @@ public class GameManager : MonoBehaviour
         {
             playerCompletedFirstTask = true;
             playerCompletedFirstTaskSuccessful = false;
-            bossScreen.What();
         }
         else
         {
@@ -66,28 +77,43 @@ public class GameManager : MonoBehaviour
             {
                 playerCompletedSecondtask = true;
                 playerCompletedSecondTaskSuccessful = false;
-                bossScreen.What();
             }
-            else
+            else if (!playerCompletedThirdTask)
             {
-                if (destroyedPackage)
-                {
-                    bossScreen.Angry();
-                }
-                else
-                {
-                    bossScreen.What();
-                }
+                playerCompletedThirdTask = true;
+                playerCompletedThirdTaskSuccessful = false;
             }
         }
+        bossScreen.What();
     }
 
     public void StartGame()
     {
         playerCompletedFirstTask = true;
         playerCompletedSecondtask = true;
+        playerCompletedThirdTask = true;
+
+        for (int i = 0; i < deliveries.Length; i++)
+        {
+            if (deliveries[i].state != "E")
+            {
+                deliveries[i].District();
+            }
+        }
+
         waveSpawner.gameObject.SetActive(true);
         waveSpawner.BeginWaves();
+    }
+
+    public void SwapDisplays()
+    {
+        for (int i = 0; i < deliveries.Length; i++)
+        {
+            if (deliveries[i].state != "E")
+            {
+                deliveries[i].SwapDisplay();
+            }
+        }
     }
 
     public void incrementPoints(float points)

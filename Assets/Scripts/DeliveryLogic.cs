@@ -20,6 +20,11 @@ public class DeliveryLogic : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
     }
 
+    public void District()
+    {
+        screen.material = matDistrict;
+    }
+
     public void SwapDisplay()
     {
         StartCoroutine(Coroutines.Chain(
