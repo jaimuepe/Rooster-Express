@@ -6,6 +6,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+
     private float playerPoints;
     private Transform _playerTransform;
     Canvas canvas;
@@ -39,23 +40,46 @@ public class GameManager : MonoBehaviour
 
     public WaveSystem waveSpawner;
 
-    DeliveryLogic[] deliveries;
+    public DeliveryLogic[] deliveriesWithoutGarbage;
 
     BossScreen bossScreen;
 
     TextFollows textFollows;
+    
+    public Canvas gameCanvas;
 
+    [Range(0.0f, 1.0f)]
+    public float anger;
+
+    public float angerReductionDestroyGarbage;
+    public float angerReductionDeliverPackage;
+    public float angerIncreaseWrongDelivery;
+    public float angerIncreaseBurntPackage;
+    public float angerIncreasePerBox;
+    public float angerIncreaseFragileBoxHit;
+    public float angerDecay;
+
+    public float angryBossThreshold;
+    public float uncomfortableBossThreshold;
+
+    bool gameStarted = false;
 
     void Start()
     {
         playerPoints = 0;
         canvas = FindObjectOfType<Canvas>();
         bossScreen = FindObjectOfType<BossScreen>();
-        deliveries = FindObjectsOfType<DeliveryLogic>();
         textFollows = FindObjectOfType<TextFollows>();
+        _playerTransform = GameObject.FindWithTag("Player").transform;
     }
 
-    public void SuccessfulDelivery()
+    private void Update()
+    {
+     if (!gameStarted) { return; }
+        anger -= angerDecay * Time.deltaTime;
+    }
+
+    public void SuccessfulDelivery(bool destroyedGarbage)
     {
         if (!playerCompletedFirstTask)
         {
@@ -76,7 +100,21 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        if (destroyedGarbage)
+        {
+            anger -= angerReductionDestroyGarbage;
+        }
+        else
+        {
+            anger -= angerReductionDeliverPackage;
+        }
+
         bossScreen.Relaxed();
+    }
+
+    public void OnBoxSpawned()
+    {
+        anger += angerIncreasePerBox;
     }
 
     public void UnsucessfulDelivery(bool destroyedPackage)
@@ -99,7 +137,24 @@ public class GameManager : MonoBehaviour
                 playerCompletedThirdTaskSuccessful = false;
             }
         }
-        bossScreen.What();
+
+        if (destroyedPackage)
+        {
+            anger += angerIncreaseBurntPackage;
+        }
+        else
+        {
+            anger += angerIncreaseWrongDelivery;
+        }
+
+        if (anger > angryBossThreshold)
+        {
+            bossScreen.Angry();
+        }
+        else
+        {
+            bossScreen.What();
+        }
     }
 
     public void StartGame()
@@ -108,26 +163,26 @@ public class GameManager : MonoBehaviour
         playerCompletedSecondtask = true;
         playerCompletedThirdTask = true;
 
-        for (int i = 0; i < deliveries.Length; i++)
+        for (int i = 0; i < deliveriesWithoutGarbage.Length; i++)
         {
-            if (deliveries[i].state != "E")
-            {
-                deliveries[i].District();
-            }
+            deliveriesWithoutGarbage[i].District(i);
         }
 
         waveSpawner.gameObject.SetActive(true);
+        gameCanvas.gameObject.SetActive(true);
+
         waveSpawner.BeginWaves();
+        gameStarted = true;
     }
 
     public void SwapDisplays()
     {
-        for (int i = 0; i < deliveries.Length; i++)
+        int[] indexes = { 0, 1, 2, 3 };
+        indexes.Shuffle();
+
+        for (int i = 0; i < deliveriesWithoutGarbage.Length; i++)
         {
-            if (deliveries[i].state != "E")
-            {
-                deliveries[i].SwapDisplay();
-            }
+            deliveriesWithoutGarbage[i].SwapDisplay(indexes[i]);
         }
     }
 
@@ -153,6 +208,12 @@ public class GameManager : MonoBehaviour
         this.playerPoints -= 5;
         textFollows.showMessage(textFollows.BURNT_TEXT, textFollows.COLOR_RED);
         burntBoxes += 1;
+    }
+
+    private void showCoinText(string text)
+    {
+        coinText.text = text;
+        coinText.autoSizeTextContainer = true;
     }
 
 }

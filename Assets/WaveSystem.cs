@@ -12,15 +12,21 @@ public class WaveSystem : MonoBehaviour
     public AnimationCurve wavesCurve;
     public AnimationCurve boxesSpawnedInTimeCurve;
     public AnimationCurve randomDecalsInTimeCurve;
+    public AnimationCurve displayModeSwapCurve;
 
     private int lastWave = -1;
+    private int lastDisplayModeSwap = 0;
+
     private float totalTime;
 
     private bool started;
 
+    GameManager gm;
+
     private void Start()
     {
         spawner = FindObjectOfType<BoxSpawner>();
+        gm = FindObjectOfType<GameManager>();
     }
 
     public void BeginWaves()
@@ -39,6 +45,13 @@ public class WaveSystem : MonoBehaviour
             SpawnWave(wave);
             lastWave = wave;
         }
+
+        int display = (int)Mathf.Floor(displayModeSwapCurve.Evaluate(totalTime));
+        if (display != lastDisplayModeSwap)
+        {
+            gm.SwapDisplays();
+            lastDisplayModeSwap = display;
+        }
         totalTime += Time.deltaTime;
     }
 
@@ -46,8 +59,6 @@ public class WaveSystem : MonoBehaviour
     {
         int boxes = (int)boxesSpawnedInTimeCurve.Evaluate(totalTime);
         int decals = (int)randomDecalsInTimeCurve.Evaluate(totalTime);
-
-        Debug.Log("Spawning wave " + wave + ": boxes = " + boxes + ", decals = " + decals);
 
         WaveInfo waveInfo = new WaveInfo
         {

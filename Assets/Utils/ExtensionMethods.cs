@@ -38,5 +38,17 @@ public static class ExtensionMethods
     }
 
     #endregion
+
+    public static void Shuffle<T>(this T[] texts)
+    {
+        // Knuth shuffle algorithm :: courtesy of Wikipedia :)
+        for (int t = 0; t < texts.Length; t++)
+        {
+            T tmp = texts[t];
+            int r = Random.Range(t, texts.Length);
+            texts[t] = texts[r];
+            texts[r] = tmp;
+        }
+    }
 }
 

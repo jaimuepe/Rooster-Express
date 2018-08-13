@@ -63,7 +63,7 @@ public class BoxSpawner : MonoBehaviour
         StartCoroutine(SpawnBoxesDelayed(waveInfo));
     }
 
-    void GenerateTags(GameObject baseObject, string districtCode, int ammountOfTags, bool canSpawnCrossedLabel = true)
+    void GenerateTags(GameObject baseObject, string districtCode, int ammountOfTags, bool canSpawnCrossedLabel = true, bool fragile = false)
     {
         Transform baseTransform = baseObject.transform;
         float depth = 0.0001f;
@@ -84,6 +84,14 @@ public class BoxSpawner : MonoBehaviour
             useBigDecal = true;
         }
 
+        Material colorDecal = colorDecals[districtIndex];
+        GenerateTag(baseObject, baseTransform, colorDecal, 1.0f, ref depth);
+
+        if (fragile)
+        {
+            GenerateTag(baseObject, baseTransform, fragileDecal, 2.0f, ref depth);
+        }
+
         if (useBigDecal)
         {
             Material districtDecalBig = districtDecalsBig[districtIndex];
@@ -97,9 +105,6 @@ public class BoxSpawner : MonoBehaviour
             Material districtDecalSmall = districtDecals[districtIndex];
             GenerateTag(baseObject, baseTransform, districtDecalSmall, 1.0f, ref depth);
         }
-
-        Material colorDecal = colorDecals[districtIndex];
-        GenerateTag(baseObject, baseTransform, colorDecal, 1.0f, ref depth);
     }
 
     int AnotherRandomDistrict(int distIndex)
@@ -198,18 +203,24 @@ public class BoxSpawner : MonoBehaviour
 
             Transform boxTransform = box.transform;
 
+            bool fragile = Random.value < 0.1f;
+
             boxTransform.position = transform.position + new Vector3(spawnArea.x, 0.0f, spawnArea.y);
             float scale = 1.0f;
             if (code != "E")
             {
                 scale = Random.Range(minScale, maxScale);
                 boxTransform.localScale = scale * Vector3.one;
-                GenerateTags(box, code, Random.Range(waveInfo.minNumberOfDecals, waveInfo.maxNumberOfDecals), waveInfo.canSpawnCrossedLabel);
+                GenerateTags(box, code, Random.Range(waveInfo.minNumberOfDecals, waveInfo.maxNumberOfDecals), waveInfo.canSpawnCrossedLabel, fragile);
             }
 
             box.gameObject.GetComponent<Rigidbody>().mass *= scale;
-            box.GetComponent<Caja>().points *= scale;
-            box.GetComponent<Caja>().code = code;
+            Caja bb = box.GetComponent<Caja>();
+
+
+            bb.fragile = fragile;
+            bb.points *= scale;
+            bb.code = code;
 
             yield return null;
         }

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Caja : MonoBehaviour {
-    
+public class Caja : MonoBehaviour
+{
+    public bool fragile;
     public float points;
     public string code;
 
@@ -26,17 +27,14 @@ public class Caja : MonoBehaviour {
         textFollows = FindObjectOfType<TextFollows>();
         gameManager = FindObjectOfType<GameManager>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(pickedUpFor1stTime) {
+        if (pickedUpFor1stTime)
+        {
             speedCollision = GetComponent<Rigidbody>().velocity.magnitude;
-            if(speedCollision > maxSpeedCollision) {
+            if (speedCollision > maxSpeedCollision)
+            {
                 maxSpeedCollision = speedCollision;
             }
             if(speedCollision > maxValueForHit) {
