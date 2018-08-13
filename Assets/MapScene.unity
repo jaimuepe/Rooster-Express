@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18296872, g: 0.22865872, b: 0.30682647, a: 1}
+  m_IndirectSpecularColor: {r: 0.1829691, g: 0.22865933, b: 0.30682752, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1180,14 +1180,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsUI: {fileID: 0}
   coinText: {fileID: 0}
-  correctBoxes: 0
-  wrongBoxes: 0
-  burntBoxes: 0
-  fragileBoxesHits: 0
-  maximumThrowDistance: 0
-  itemsThrown: 0
-  itemsThrownCorrect: 0
-  garbageCollected: 0
   playerGrabbedFirstBox: 0
   playerInspectedFirstBox: 0
   playerCompletedFirstTask: 0
@@ -6875,16 +6867,6 @@ Prefab:
       propertyPath: detailCameraContainerTransform
       value: 
       objectReference: {fileID: 1851919807}
-    - target: {fileID: 54330958439196818, guid: c348c000f8796fb4faa3110b483d9f55,
-        type: 2}
-      propertyPath: m_Mass
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114740589335171152, guid: c348c000f8796fb4faa3110b483d9f55,
-        type: 2}
-      propertyPath: maxForce
-      value: 25
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c348c000f8796fb4faa3110b483d9f55, type: 2}
   m_IsPrefabAsset: 0
