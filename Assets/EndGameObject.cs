@@ -21,6 +21,8 @@ public class EndGameObject : MonoBehaviour
 
     public bool gameEnded = false;
 
+    public Canvas statisticsCanvas;
+
     public void EndGame()
     {
         gameObject.SetActive(true);
@@ -28,6 +30,7 @@ public class EndGameObject : MonoBehaviour
         gameEnded = true;
         StopAllCoroutines();
 
+        gm.UpdatePoints();
         controller.ExitDetailView();
         grabber.DropBox(0.0f, controller.transform.position);
         controller.enabled = false;
@@ -52,7 +55,9 @@ public class EndGameObject : MonoBehaviour
                     Coroutines.Wrap(() => spawner.SpawnBoxes(500, 0.01f)),
                     DisplayText("You think you are good at your job? Let's see how you handle THIS...", 4.0f)),
                Coroutines.Wait(2.0f),
-               DisplayText("... Oh, wait, your turn is over. Don't worry, someone else will pick this up. See you tomorrow...", 5.0f));
+               DisplayText("... Oh, wait, your turn is over. Don't worry, someone else will pick this up. See you tomorrow...", 5.0f),
+               Coroutines.Wait(2.0f),
+               Coroutines.Wrap(() => statisticsCanvas.gameObject.SetActive(true)));
     }
 
     IEnumerator CoroutineEndFail()
@@ -60,7 +65,8 @@ public class EndGameObject : MonoBehaviour
         return Coroutines.Chain(
             Coroutines.Wait(2.0f),
             DisplayText("Well... that was a disaster. You are fired.", 4.0f),
-            Coroutines.Wait(2.0f));
+            Coroutines.Wait(4.0f),
+            Coroutines.Wrap(() => statisticsCanvas.gameObject.SetActive(true)));
     }
 
     IEnumerator DisplayText(string text, float length)

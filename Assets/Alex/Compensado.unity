@@ -764,7 +764,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &222367320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1695,6 +1695,23 @@ MonoBehaviour:
   itemsThrown: 0
   itemsThrownCorrect: 0
   garbageCollected: 0
+  statsCanvas: {fileID: 222367322}
+  correctBoxesText: {fileID: 1228460405}
+  wrongBoxesText: {fileID: 536427272}
+  burntBoxesText: {fileID: 308972598}
+  fragileBoxesHitsText: {fileID: 1242219034}
+  maximumThrowDistanceText: {fileID: 187643708}
+  itemsThrownText: {fileID: 1947374205}
+  itemsThrownCorrectText: {fileID: 1994096116}
+  garbageCollectedText: {fileID: 1830482178}
+  totalMoneyText: {fileID: 1170869354}
+  moneyCorrect: 2
+  moneyWrong: 4
+  moneyBurnt: 15
+  moneyFragileHits: 1
+  moneyThrowDistance: 2
+  moneyThrownCorrectly: 5
+  moneyGarbage: 1
   playerGrabbedFirstBox: 0
   playerInspectedFirstBox: 0
   playerCompletedFirstTask: 0
@@ -8467,7 +8484,7 @@ GameObject:
   - component: {fileID: 1170869355}
   - component: {fileID: 1170869354}
   m_Layer: 5
-  m_Name: TextMeshPro Text
+  m_Name: TotalMoneyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9675,7 +9692,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -540.1, y: 434}
+  m_AnchoredPosition: {x: -540.10156, y: 434}
   m_SizeDelta: {x: -1170.9, y: -1025.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1411998941
@@ -10786,8 +10803,6 @@ MonoBehaviour:
   - {fileID: 1959988638}
   - {fileID: 54334413}
   - {fileID: 567070103}
-  buzzerClip: {fileID: 8300000, guid: 1fe5e0c1e42531d468e6d86a370d832c, type: 3}
-  dingClip: {fileID: 8300000, guid: 5d03b9312ecf18e4a99c19b6530feb54, type: 3}
 --- !u!4 &1811224420
 Transform:
   m_ObjectHideFlags: 0
