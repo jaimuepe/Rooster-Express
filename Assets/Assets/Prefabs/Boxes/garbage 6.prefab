@@ -133,7 +133,7 @@ MonoBehaviour:
   maxDistanceDone: 0
   speedCollision: 0
   maxSpeedCollision: 0
-  defaultThrowDistance: 0
+  defaultThrowDistance: 3
   boxWasThrown: 0
   pickedUp: 0
   brokenGlassClip: []
