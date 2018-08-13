@@ -138,14 +138,14 @@ public class GameManager : MonoBehaviour
 
     public void UpdatePoints() {
 
-        correctBoxesText.text = "Correct boxes: " + correctBoxes + " (<color=\"green\">+$" + moneyCorrect * correctBoxes + "</color>)";
-        wrongBoxesText.text = "Wrong boxes: " + wrongBoxes + " (<color=\"red\">-$" + moneyWrong * wrongBoxes + "</color>)";
+        correctBoxesText.text = "Correct deliveries: " + correctBoxes + " (<color=\"green\">+$" + moneyCorrect * correctBoxes + "</color>)";
+        wrongBoxesText.text = "Wrong deliveries: " + wrongBoxes + " (<color=\"red\">-$" + moneyWrong * wrongBoxes + "</color>)";
         burntBoxesText.text = "Burnt boxes: " + burntBoxes + " (<color=\"red\">-$" + moneyBurnt * burntBoxes + "</color>)";
-        fragileBoxesHitsText.text = "Fragile items broken: " + fragileBoxesHits + " (<color=\"red\">-$" + moneyFragileHits * fragileBoxesHits + "</color>)";
+        fragileBoxesHitsText.text = "Fragile boxes broken: " + fragileBoxesHits + " (<color=\"red\">-$" + moneyFragileHits * fragileBoxesHits + "</color>)";
         maximumThrowDistanceText.text = "Max. throw distance: " + System.Math.Round(maximumThrowDistance, 0) + "m (<color=\"green\">+$" 
             + System.Math.Round(moneyThrowDistance * maximumThrowDistance, 0) + "</color>)";
         itemsThrownText.text = "Items thrown: " + itemsThrown;
-        itemsThrownCorrectText.text = "Items thrown correctly: " + itemsThrownCorrect + " (<color=\"green\">+$" 
+        itemsThrownCorrectText.text = "Three-point shots: " + itemsThrownCorrect + " (<color=\"green\">+$" 
             + moneyThrownCorrectly * itemsThrownCorrect + "</color>)";
         garbageCollectedText.text = "Garbage collected: " + garbageCollected + " (<color=\"green\">+$" + moneyGarbage * garbageCollected + "</color>)";
         totalMoney = (moneyCorrect * correctBoxes) - (moneyWrong * wrongBoxes) - (moneyBurnt * burntBoxes) 
