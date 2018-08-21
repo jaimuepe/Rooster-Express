@@ -1,4 +1,4 @@
-# Rooster-Express
+# Rooster Express
 
 ![A gif of the boss (a rooster) talking](rooster_talking.gif?raw=true "A gif of the boss (a rooster) talking")
 
